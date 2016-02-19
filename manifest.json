@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "name": "DQMSL Search Translation",
+  "version": "1.0",
+  "description": "Translate names in DQMSL Search (http://dqmsl-search.net) to Chinese",
+  "content_scripts": [
+    {
+      "matches": ["http://dqmsl-search.net/*"],
+      "js": ["jquery-2.2.0.min.js","dqmsl.min.js"]
+    }
+  ]
+}
