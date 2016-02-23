@@ -32,3 +32,47 @@ in Safari.
 - Install the extension Greasemonkey.
 - Drag and drop the file "dqmsl.user.js" to a Firefox window.
 - Click the Install button.
+
+## Uninstall
+
+Depending on the browser, perform the following steps to uninstall this
+userscript.
+
+### Google Chrome
+
+- Visit chrome://extensions/.
+- Click the trash can icon for DQMSL Search Translation.
+
+### Apple Safari
+
+- Click the menu item "Develop" > "Show Extension Builder"
+- Click "DQMSL Search Translation" in the left panel.
+- Click the "Uninstall" button at the upper-right corner.
+
+### Mozilla Firefox
+
+- Visit about:addons.
+- Select the "User Scripts" panel.
+- Click the "Remove" button.
+
+## Update
+
+User can always uninstall and then re-install the userscript to update it.
+To avoid uninstallation, store the up-to-date project files in the folder
+A same as the folder in Installation.
+
+### Google Chrome
+
+- Visit chrome://extensions/.
+- Click "Reload" in the DQMSL Search Translation extension.
+
+### Apple Safari
+
+- Click the menu item "Develop" > "Show Extension Builder"
+- Click "DQMSL Search Translation" in the left panel.
+- Click the "Reload" button.
+
+### Mozilla Firefox
+
+- Drag and drop the file "dqmsl.user.js" to a Firefox window.
+- Click the Install button.
