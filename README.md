@@ -19,9 +19,11 @@ a local folder named A.
 ### Apple Safari
 
 Rename the folder "A" to "A.safariextension" before the following steps
-in Safari.
+in Safari. 
 
-- Click the menu item "Develop" > "Show Extension Builder"
+- Click the menu item "Develop" > "Show Extension Builder".
+  If there is no "Develop" menu, enable it in "Preferences..." > "Advanced"
+  > "Show Develop menu in menu bar".
 - Click the + button (at the lower-left corner) and then "Add Extension...".
 - Select the folder "A.safariextension".
 - Click "DQMSL Search Translation" in the left panel.
