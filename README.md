@@ -26,3 +26,9 @@ in Safari.
 - Select the folder "A.safariextension".
 - Click "DQMSL Search Translation" in the left panel.
 - Click the "Install" button at the upper-right corner.
+
+### Mozilla Firefox
+
+- Install the extension Greasemonkey.
+- Drag and drop the file "dqmsl.user.js" to a Firefox window.
+- Click the Install button.
