@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        DQMSL Search Translation
-// @namespace   dqmsl
+// @namespace   https://github.com/mht208/dqmsl-search-translation
 // @include     http://dqmsl-search.net/*
 // @include     http://dqmsl.jpn.org/*
 // @version     2016.2.24.2

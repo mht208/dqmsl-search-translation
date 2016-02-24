@@ -3,6 +3,8 @@
   "name": "DQMSL Search Translation",
   "version": "2016.2.24.2",
   "description": "Translate names in DQMSL Search (http://dqmsl-search.net) to Chinese",
+  "author": "Ming-Hsien Tsai",
+  "homepage_url": "https://github.com/mht208/dqmsl-search-translation",
   "content_scripts": [
     {
       "matches": [
