@@ -78,6 +78,8 @@ var others = {
   "マヒ": "痲痹",
   "ﾏﾎﾄｰﾝ": "瑪霍托恩",
   "ﾏﾇｰｻ": "瑪努撒",
+  "眠り": "睡眠",
+  "混乱": "混亂",
   "息封じ": "氣息封印",
 
   /* 其他 */
@@ -1454,6 +1456,27 @@ var equipments = {
   "ドラゴンのツノ": ""
 };
 
+/* ==================== For dqmsl.jpn.org ==================== */
+var dqmsl_jpn_org = {
+  "パワーアップさせる": "合星",
+
+  "メラ　　　：": "美拉　　　：",
+  "ヒャド　　：": "夏德　　　：",
+  "ギラ　　　：": "基拉　　　：",
+  "バギ　　　：": "巴基　　　：",
+  "イオ　　　：": "伊奧　　　：",
+  "デイン　　：": "迪恩　　　：",
+  "ドルマ　　：": "德爾瑪　　：",
+  "ザキ　　　：": "札奇　　　：",
+  "マヌーサ　：": "瑪努撒　　：",
+  "マホトーン：": "瑪霍托恩　：",
+  "毒　　　　：": "毒　　　　：",
+  "ねむり　　：": "睡眠　　　：",
+  "こんらん　：": "混亂　　　：",
+  "マヒ　　　：": "麻痺　　　：",
+  "息封じ　　：": "氣息封印　："
+};
+
 /* ==================== Auxiliary Functions ===================== */
 
 RegExp.escape = function(s) {
@@ -1486,7 +1509,10 @@ var accessors = [
     cn: function(k) { return characteristics[k]; } },
   { source: equipments,
     jn: function(k) { return k; },
-    cn: function(k) { return equipments[k]; } }
+    cn: function(k) { return equipments[k]; } },
+  { source: dqmsl_jpn_org,
+    jn: function(k) { return k; },
+    cn: function(k) { return dqmsl_jpn_org[k]; } }
 ];
 for (var i in accessors) {
   var accessor = accessors[i];
