@@ -1566,7 +1566,7 @@ for (var i in accessors) {
       names[RegExp.escape(jn)] = cn;
   }
 }
-
+/*
 var keys = Object.keys(names).sort(
   function(x, y) {
     if (x.length < y.length) return -1;
@@ -1594,6 +1594,15 @@ while(true) {
     else
         groups[cur].push(key);
 }
+*/
+var keys = Object.keys(names).sort(
+  function(x, y) {
+    if (x.length < y.length) return 1;
+    else if (x.length > y.length) return -1;
+    else return x.localeCompare(y);
+  }
+);
+var groups = [keys];
 
 /* ==================== Substitution ===================== */
 
