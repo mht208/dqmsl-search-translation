@@ -1567,7 +1567,13 @@ for (var i in accessors) {
   }
 }
 
-var keys = Object.keys(names);
+var keys = Object.keys(names).sort(
+  function(x, y) {
+    if (x.length < y.length) return -1;
+    else if (x.length > y.length) return 1;
+    else return x.localeCompare(y);
+  }
+);
 var groups = [[]];
 var rest = [];
 var cur = 0;
