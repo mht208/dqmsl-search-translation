@@ -1,0 +1,18 @@
+#!/bin/sh
+
+VERSION=$1
+PATTERN="[0-9]\{4\}.[0-9]\{1,2\}.[0-9]\{1,2\}.[0-9]\{1,2\}"
+
+if [[ "${VERSION}" == "" ]]; then
+  echo "Usage: ${0} VERSION"
+  exit
+fi
+
+MATCH=`echo ${VERSION} | sed "s/^${PATTERN}\$//"`
+if [[ "${MATCH}" == "" ]]; then
+  YY=$((`echo ${VERSION} | cut -d . -f 1` + 0))
+  MM=$((`echo ${VERSION} | cut -d . -f 2` + 0))
+  DD=$((`echo ${VERSION} | cut -d . -f 3` + 0))
+  XX=$((`echo ${VERSION} | cut -d . -f 4` + 0))
+  echo ${YY}.${MM}.${DD}.${XX}
+fi

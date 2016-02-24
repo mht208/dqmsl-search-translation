@@ -1,0 +1,5 @@
+#!/bin/sh
+
+PATTERN="[0-9]\{4\}.[0-9]\{1,2\}.[0-9]\{1,2\}.[0-9]\{1,2\}"
+
+grep -o "${PATTERN}" firefox.header

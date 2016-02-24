@@ -2,7 +2,7 @@
 // @name        DQMSL Search Translation
 // @namespace   dqmsl
 // @include     http://dqmsl-search.net/*
-// @version     1.0
+// @version     2016.2.24.0
 // @grant       none
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js
 // ==/UserScript==

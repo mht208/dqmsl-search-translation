@@ -9,6 +9,6 @@ dqmsl.user.js: dqmsl.min.js
 	cat firefox.header | cat - $< > $@
 
 clean:
-	rm dqmsl.min.js
+	rm *.bak
 
 .PHONY: clean all

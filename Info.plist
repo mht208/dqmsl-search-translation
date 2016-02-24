@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>2016.2.24.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2016.2.24.0</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
@@ -35,7 +35,7 @@
 	<key>Description</key>
 	<string>Translate from Japanese to Chinese</string>
 	<key>DeveloperIdentifier</key>
-	<string>0000000000</string>
+	<string>2016.2.24.0</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
@@ -45,6 +45,7 @@
 			<key>Allowed Domains</key>
 			<array>
 				<string>dqmsl-search.net</string>
+				<string>dqmsl.jpn.org</string>
 			</array>
 			<key>Level</key>
 			<string>Some</string>

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+VERSION=$1
+PATTERN="[0-9]\{4\}.[0-9]\{1,2\}.[0-9]\{1,2\}.[0-9]\{1,2\}"
+
+if [[ "${VERSION}" == "" ]]; then
+  echo "Usage: ${0} VERSION"
+  exit
+fi
+
+VERSION=`./val_ver "${VERSION}"`
+if [[ "${VERSION}" == "" ]]; then
+  echo "The format of the version number should be YYYY.MM.DD.XX."
+  exit
+fi
+
+sed -i .bak "s/\(version     \)${PATTERN}/\1${VERSION}/" firefox.header
+sed -i .bak "s/${PATTERN}/${VERSION}/g" Info.plist
+sed -i .bak "s/\"version\": \"${PATTERN}\"/\"version\": \"${VERSION}\"/" manifest.json
+
+echo "Version number set to ${VERSION}."

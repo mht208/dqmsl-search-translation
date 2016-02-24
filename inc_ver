@@ -1,0 +1,15 @@
+#!/bin/sh
+
+OLD_VER=`./get_ver`
+OLD_DATE=`echo ${OLD_VER} | cut -d . -f 1 -f 2 -f 3`
+OLD_XX=`echo ${OLD_VER} | cut -d . -f 4`
+DATE="`date \"+%Y.%-m.%-d\"`"
+
+if [[ "${OLD_DATE}" == "${DATE}" ]]; then
+  XX=$((OLD_XX + 1))
+else
+  XX=0
+fi
+
+VER="${DATE}.${XX}"
+./upd_ver ${VER}
