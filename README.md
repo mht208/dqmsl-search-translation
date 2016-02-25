@@ -5,9 +5,13 @@ Search (http://dqmsl-search.net) to Chinese.
 
 ## Installation
 
-Packages as browser extensions are not built. You have to install the
-userscript manually. Assume the project files have been downloaded to
-a local folder named A.
+For Google Chrome, an extension is available on
+[Chrome Web Store](https://chrome.google.com/webstore/detail/dqmsl-search-translation/bfoalanjlafmpdifnnohngjdlbhkephh?hl=en-GB).
+As Google needs to review the extension before publishing, the version on
+Chrome Web Store is not always up-to-date.
+
+You may also install the latest userscript manually.
+Assume the project files have been downloaded to a local folder named A.
 
 ### Google Chrome
 
