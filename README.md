@@ -10,6 +10,11 @@ For Google Chrome, an extension is available on
 As Google needs to review the extension before publishing, the version on
 Chrome Web Store is not always up-to-date.
 
+For Apple Safari, an extension is available
+[here](https://drive.google.com/folderview?id=0BwtU1M55iR0ATG9WZ0NoOG1BWTQ&usp=sharing).
+Currently, when a new version is available, you need to manually
+download and install the update.
+
 You may also install the latest userscript manually.
 Assume the project files have been downloaded to a local folder named A.
 

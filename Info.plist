@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Ming-Hsien Tsai</string>
 	<key>Builder Version</key>
-	<string>10601.4.4</string>
+	<string>11601.5.17.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>DQMSL Search Translation</string>
 	<key>CFBundleIdentifier</key>
@@ -35,7 +35,7 @@
 	<key>Description</key>
 	<string>Translate names in DQMSL Search (http://dqmsl-search.net) to Chinese</string>
 	<key>DeveloperIdentifier</key>
-	<string>2016.2.24.4</string>
+	<string>YJU9R8FU24</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
