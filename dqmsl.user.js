@@ -3,7 +3,8 @@
 // @namespace   https://github.com/mht208/dqmsl-search-translation
 // @include     http://dqmsl-search.net/*
 // @include     http://dqmsl.jpn.org/*
-// @version     2016.6.22.0
+// @include     http://dqmsl.gamedbs.jp/*
+// @version     2016.6.24.0
 // @grant       none
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js
 // ==/UserScript==

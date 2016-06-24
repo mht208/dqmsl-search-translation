@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2016.6.22.0</string>
+	<string>2016.6.24.0</string>
 	<key>CFBundleVersion</key>
-	<string>2016.6.22.0</string>
+	<string>2016.6.24.0</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
@@ -46,6 +46,7 @@
 			<array>
 				<string>dqmsl-search.net</string>
 				<string>dqmsl.jpn.org</string>
+				<string>dqmsl.gamedbs.jp</string>
 			</array>
 			<key>Level</key>
 			<string>Some</string>
