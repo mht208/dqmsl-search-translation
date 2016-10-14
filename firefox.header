@@ -4,7 +4,7 @@
 // @include     http://dqmsl-search.net/*
 // @include     http://dqmsl.jpn.org/*
 // @include     http://dqmsl.gamedbs.jp/*
-// @version     2016.10.12.0
+// @version     2016.10.15.0
 // @grant       none
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js
 // ==/UserScript==
