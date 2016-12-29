@@ -1,4 +1,6 @@
 
+var dqmsl_search_url = "dqmsl-search.net";
+
 /* ==================== Exceptions ===================== */
 var exceptions = [
   "DQMSLサーチ",
@@ -1238,7 +1240,7 @@ var skills = {
     6042: {jn: "ギガスラッシュ", cn: "光刃斬", detail: "對全體敵人造成迪恩系的斬擊傷害"},
     6043: {jn: "スライダークロー", cn: "黑暗金屬爪", detail: ""},
     6044: {jn: "メタルむそう", cn: "金屬無雙", detail: "隨機使出2~6次金屬斬"},
-    6045: {jn: "聖魔斬", cn: "聖魔斬", detail: "對???系魔物造成巨大傷害"},
+    6045: {jn: "聖魔斬", cn: "聖魔斬", detail: "對？？？系魔物造成巨大傷害"},
     6046: {jn: "双竜打ち", cn: "雙龍打", detail: "連續2次攻擊一個敵人"},
     6047: {jn: "ミラクルソード", cn: "奇蹟劍技", detail: "對一個敵人造成傷害，並吸收一半傷害"},
     6048: {jn: "しっぷうづき", cn: "疾風突刺", detail: ""},
@@ -1829,6 +1831,845 @@ var dqmsl_jpn_org = {
   "息封じ　　：": "氣息封印　："
 };
 
+/* ==================== Taiwan ===================== */
+
+var System = function(id, name) {
+  this.id = id;
+  this.name = name;
+};
+var sSlime = new System(1, "史萊姆系");
+var sDragon = new System(2, "龍系");
+var sBeast = new System(3, "魔獸系");
+var sNature = new System(4, "自然系");
+var sSubstance = new System(5, "物質系");
+var sDevil = new System(6, "惡魔系");
+var sZombie = new System(7, "殭屍系");
+var sX = new System(8, "？？？系");
+var sReincarnation = new System(9, "轉生系");
+
+var Type = function(id, name) {
+  this.id = id;
+  this.name = name;
+};
+var tAttack = new Type(1, "攻擊");
+var tDefense = new Type(2, "防禦");
+var tMagic = new Type(3, "魔法");
+var tRecovery = new Type(4, "回復");
+var tAuxiliary = new Type(5, "輔助");
+var tUniversal = new Type(6, "萬能");
+var tSpecial = new Type(7, "特殊");
+
+var Rank = function(id, name, xlevel, cls) {
+  this.id = id;
+  this.name = name;
+  this.xlevel = xlevel;
+  this.cls = cls;
+};
+var ranks = ["SS", "S", "A", "B", "C", "D", "E", "F"];
+var rSS = new Rank(8, "SS", 80, "rankSprite rank8");
+var rS = new Rank(7, "S", 80, "rankSprite rank7");
+var rA = new Rank(6, "A", 70, "rankSprite rank6");
+var rB = new Rank(5, "B", 60, "rankSprite rank5");
+var rC = new Rank(4, "C", 50, "rankSprite rank4");
+var rD = new Rank(3, "D", 40, "rankSprite rank3");
+var rE = new Rank(2, "E", 30, "rankSprite rank2");
+var rF = new Rank(1, "F", 20, "rankSprite rank1");
+
+var powerup_factor = 0.02;
+var powerup_unit = 50;
+var inherit_factor = 0.2;
+var State = function(hp, mp, atk, def, agi, wis) {
+  this.hp = hp;
+  this.mp = mp;
+  this.atk = atk;
+  this.def = def;
+  this.agi = agi;
+  this.wis = wis;
+  this.sum = function() {
+    return this.hp + this.mp + this.atk + this.def + this.agi + this.wis;
+  };
+  this.add = function(s) {
+    return new State(this.hp + s.hp, this.mp + s.mp, this.atk + s.atk, this.def + s.def, this.agi + s.agi, this.wis + s.wis);
+  };
+  this.sub = function(s) {
+    return new State(this.hp - s.hp, this.mp - s.mp, this.atk - s.atk, this.def - s.def, this.agi - s.agi, this.wis - s.wis);
+  };
+  this.div = function(n) {
+    return new State(this.hp / n, this.mp / n, this.atk / n, this.def / n, this.agi / n, this.wis / n);
+  };
+  this.mul = function(n) {
+    return new State(this.hp * n, this.mp * n, this.atk * n, this.def * n, this.agi * n, this.wis * n);
+  };
+  this.ceil = function() {
+    return new State(Math.ceil(this.hp), Math.ceil(this.mp), Math.ceil(this.atk), Math.ceil(this.def), Math.ceil(this.agi), Math.ceil(this.wis));
+  };
+  this.merge1 = function(t) {
+    return this.add(this.mul(powerup_factor).ceil()).add(t.mul(powerup_factor).ceil());
+  };
+  this.mergeN = function(t, n) {
+    var s = this;
+    for (var i = 0; i < n; i ++)
+      s = s.merge1(t);
+    return s;
+  };
+};
+
+var SkillType = function(id, name, cls) {
+  this.id = id;
+  this.name = name;
+  this.cls = cls;
+};
+var sMagicAttack = new SkillType(1, "攻擊咒文", "tokugiSprite tkg1");
+var sMagicSpecial = new SkillType(2, "特殊咒文", "tokugiSprite tkg2");
+var sMagicRecover = new SkillType(3, "回復咒文", "tokugiSprite tkg3");
+var sMagicUp = new SkillType(4, "輔助增益咒文", "tokugiSprite tkg4");
+var sMagicDown = new SkillType(5, "輔助減益咒文", "tokugiSprite tkg5");
+var sSlashAttack = new SkillType(6, "斬擊攻擊", "tokugiSprite tkg6");
+var sSlashDown = new SkillType(7, "斬擊狀態異常", "tokugiSprite tkg7");
+var sSlashSpecial = new SkillType(8, "斬擊特殊", "tokugiSprite tkg21");
+var sPhysicalAttack = new SkillType(9, "體技攻擊", "tokugiSprite tkg8");
+var sPhysicalRecover = new SkillType(10, "體技回復", "tokugiSprite tkg9");
+var sPhysicalDown = new SkillType(11, "體技狀態異常", "tokugiSprite tkg10");
+var sPhysicalSpecial = new SkillType(12, "體技特殊", "tokugiSprite tkg11");
+var sPhysicalUp = new SkillType(13, "體技增益", "tokugiSprite tkg15");
+var sBreathAttack = new SkillType(14, "吐息攻擊", "tokugiSprite tkg12");
+var sBreathDown = new SkillType(15, "吐息狀態異常", "tokugiSprite tkg13");
+var sDanceUp = new SkillType(17, "舞蹈輔助", "tokugiSprite tkg18");
+var sDanceDown = new SkillType(18, "舞蹈狀態異常", "tokugiSprite tkg19");
+var sDanceRecover = new SkillType(19, "舞蹈回復", "tokugiSprite tkg20");
+var sDanceSttack = new SkillType(20, "舞蹈攻擊", "tokugiSprite tkg17");
+
+var Skill = function(name, description, lv, mp, stype) {
+  this.name = name;
+  this.description = description;
+  this.lv = lv;
+  this.mp = mp;
+  this.stype = stype;
+};
+
+var Characteristic = function(name, description) {
+  this.name = name;
+  this.description = description;
+};
+var cAI12 = new Characteristic("AI行動1-2次", "1回合中1~2回連續行動 第2次以後的行動 會使用普通攻擊");
+var cAI2 = new Characteristic("AI行動2次", "1回合中2回連續行動 第2次以後的行動 會使用普通攻擊");
+var cAI23 = new Characteristic("AI行動2-3次", "1回合中2~3回連續行動 第2次以後的行動 會使用普通攻擊");
+var cDodge = new Characteristic("閃避提升", "閃避率提升");
+var cODefUp = new Characteristic("偶發斯卡拉", "在一輪最開始偶爾發動 防禦力提升");
+var cOMagicDefense = new Characteristic("偶發瑪霍卡恩塔", "在一輪最開始偶爾發動 咒文反彈");
+var cRecoverMP = new Characteristic("自動恢復MP", "行動後 MP稍微恢復");
+var cIncreaseGold = new Characteristic("金幣增加", "完成關卡時 獲得金幣增加1.2倍 同樣效果不能重複");
+var cEasyCriticalHit = new Characteristic("容易出現會心一擊", "會心一擊 稍微容易出現");
+
+var Leader = function(name, description, target) {
+  this.name = name;
+  this.description = description;
+  this.target = target;
+};
+var Target = function(id, name, cls) {
+  this.id = id;
+  this.name = name;
+  this.cls = cls;
+};
+var tAll = new Target(1, "全系統", "");
+var tSlime = new Target(2, "史萊姆系", "slm");
+var tDragon = new Target(3, "龍系", "dra");
+var tBeast = new Target(4, "魔獸系", "mjy");
+var tNature = new Target(5, "自然系", "szn");
+var tSubstance = new Target(6, "物質系", "bst");
+var tDevil = new Target(7, "惡魔系", "akm");
+var tZombie = new Target(8, "殭屍系", "zmb");
+var tX = new Target(9, "？？？系", "htn");
+var lNone = new Leader("無", "無", null);
+
+var Resistance = function(id, name, cls) {
+  this.id = id;
+  this.name = name;
+  this.cls = cls;
+};
+var rEqual = new Resistance(0, "", "-");
+var rReflect = new Resistance(1, "反射", "taiseiSprite tisi1");
+var rAbsord = new Resistance(2, "吸收", "taiseiSprite tisi2")
+var rVoid = new Resistance(3, "無效", "taiseiSprite tisi3");
+var rHalf = new Resistance(4, "半減", "taiseiSprite tisi4");
+var rVeryStrong = new Resistance(5, "十分強", "taiseiSprite tisi5");
+var rStrong = new Resistance(6, "強", "taiseiSprite tisi6");
+var rWeak = new Resistance(7, "弱", "taiseiSprite tisi7");
+var rVeryWeak = new Resistance(8, "十分弱", "taiseiSprite tisi8");
+
+var Egg = function(no, name, image) {
+  this.no = no;
+  this.name = name;
+  this.image = image;
+}
+var red_egg = new Egg(8008, "紅中蛋", "https://2-t.imgbox.com/t9Iyxa6Y.jpg");
+var white_egg = new Egg(8009, "白板蛋", "https://5-t.imgbox.com/ViDWIk5l.jpg");
+var green_egg = new Egg(8010, "青發蛋", "https://8-t.imgbox.com/8NrkrlWo.jpg");
+var king_egg = new Egg(415, "奇異蛋之王", "/img/icon/000415.gif");
+var rainbow_egg = new Egg(416, "彩虹蛋", "/img/icon/000416.gif");
+
+var Star = function(id) {
+  this.id = id;
+  this.cls = "starssp stars" + this.id + " expImage2 pointer"; // unselected
+  this.scls = "starssp stars" + this.id + " expImage2 pointer expOn"; // selected
+};
+var stars = {};
+for (var i = 1; i <= 4; i++)
+  stars[i] = new Star(i);
+var plus4_cls = "expImage2 pointer";
+var plus4_scls = "expImage2 pointer expOn";
+
+var twmonsters = {};
+var Monster = function(no, name, image, description, reinsrc, reindst, reineggs, rank, system, type, weight, state, xstate, skills, characteristics, leader, resists) {
+  this.no = no;
+  this.name = name;
+  this.image = image;
+  this.description = description;
+  this.reinsrc = reinsrc;
+  this.reindst = reindst;
+  this.reineggs = reineggs;
+  this.rank = rank;
+  this.system = system;
+  this.type = type;
+  this.weight = weight;
+  this.state = state;
+  this.xstate = xstate;
+  this.skills = skills;
+  this.characteristics = characteristics;
+  this.leader = leader;
+  this.resists = resists;
+  this.getMergedState = function(c, p) {
+    var base = this.xstate;
+    if (this.reinsrc != null && p) {
+      var src = twmonsters[this.reinsrc];
+      base = base.add(src.getMergedState(4, false).sub(src.xstate).mul(inherit_factor).ceil());
+    }
+    return base.mergeN(this.xstate, c);
+  };
+};
+var mdata = [
+  new Monster( 8003, "春聯騎士", "https://6-t.imgbox.com/6oHe0Cr3.jpg",
+               "在新年期間放下劍與盾，拿起毛筆、寫著春聯的史萊姆騎士。揮動沾滿墨汁的巨大毛筆，遮蔽敵人的視線。",
+               null, null, [],
+               rC, sSlime, tAttack, 3,
+               new State(21, 16, 14, 20, 16, 18),
+               new State(165, 96, 288, 268, 168, 88),
+               [ new Skill("濃墨揮毫", "攻擊後一定機率下使對方的命中率下降", 7, 8, sSlashDown) ],
+               [ cEasyCriticalHit ],
+               new Leader("攻擊力+8%", "攻擊力上升8%", tSlime),
+               [ rEqual, rEqual, rEqual, rEqual, rHalf,
+                 rHalf, rWeak, rEqual, rEqual, rEqual,
+                 rEqual, rEqual, rEqual, rVoid, rEqual ] ),
+  new Monster( 8004, "紅包袋怪", "https://8-t.imgbox.com/nSBQdPmQ.jpg",
+               "雖然操縱著寶石，但對紅包卻更有興趣的袋型魔物。有著通紅的外表，身上總是帶著許多的紅包。會向試圖拿取紅包的敵人發動攻擊。",
+               null, null, [],
+               rC, sSubstance, tAuxiliary, 3,
+               new State(20, 25, 15, 19, 18, 23),
+               new State(168, 196, 198, 208, 116, 188),
+               [ new Skill("新春贈禮", "將自己的MP傳給己方一個成員", 5, 30, sMagicRecover),
+                 new Skill("聚財紅包袋", "奪取1個敵人的MP變成自己的MP", 18, 8, sDanceDown) ],
+               [ cIncreaseGold ],
+               new Leader("會心率+8%", "會心率上升8%", tAll),
+               [ rEqual, rEqual, rHalf, rWeak, rEqual,
+                 rEqual, rEqual, rEqual, rHalf, rEqual,
+                 rVoid, rHalf, rWeak, rEqual, rEqual ] ),
+  new Monster( 8005, "霍米財", "https://2-t.imgbox.com/AQZKzZH5.jpg",
+               "穿上財神衣、手拿麻將牌和元寶的霍伊米史萊姆。新年期間會出現在特殊的迷宮中，等待著冒險者的到來。或許和真的財神一樣，能夠為冒險者帶來財富喔！",
+               null, null, [],
+               rA, sSlime, tUniversal, 9,
+               new State(12, 22, 16, 28, 22, 18),
+               new State(406, 278, 368, 316, 312, 188),
+               [ new Skill("財神的祝福", "復活己方一個成員並恢復其一半的HP", 23, 60, sPhysicalRecover),
+                 new Skill("和氣生財", "對全體敵人造成傷害並封印對方的斬擊", 34, 32, sSlashDown) ],
+               [ cRecoverMP,
+                 cIncreaseGold ],
+               new Leader("最大MP+10%", "最大MP上升10%", tSlime),
+               [ rEqual, rEqual, rEqual, rEqual, rHalf,
+                 rHalf, rWeak, rVoid, rVoid, rEqual,
+                 rHalf, rEqual, rEqual, rVoid, rEqual ] ),
+  new Monster( 8006, "新春麒麟", "https://5-t.imgbox.com/dltP4P78.jpg",
+               "渾身都是醒目的黃色，總是浮空而行的魔物。和古老的傳說相似，只有在新年期間才會出現。不過並不會主動破壞人類的村莊，而是潛伏在某處的迷宮之中......",
+               null, 8007, [red_egg, white_egg, green_egg, king_egg, rainbow_egg],
+               rA, sBeast, tAttack, 9,
+               new State(21, 19, 18, 16, 16, 12),
+               new State(456, 168, 366, 308, 298, 108),
+               [ new Skill("衰弱煙塵", "對全體敵人造成氣息傷害，降低對手的攻擊力", 15, 32, sBreathDown),
+                 new Skill("迅捷的秘訣", "提升己方全體的敏捷", 35, 24, sMagicUp) ],
+               [ cAI12,
+                 cOMagicDefense ],
+               new Leader("攻擊防禦+10%", "攻擊力和防禦力上升10%", tBeast),
+               [ rWeak, rVeryStrong, rStrong, rEqual, rWeak,
+                 rStrong, rStrong, rVoid, rEqual, rHalf,
+                 rVoid, rEqual, rEqual, rHalf, rEqual ] ),
+  new Monster( 8007, "年獸大三元", "https://8-t.imgbox.com/lBkUQa0f.jpg",
+               "湊齊了三種特殊的奇異蛋轉生而成的魔物。有著漆黑的外表，只要發出吼叫，就會讓敵人心生膽怯。討厭爆竹，或許也害怕美拉系和伊奧系的特技。",
+               8006, null, [],
+               rS, sBeast, tAttack, 14,
+               new State(23, 20, 19, 17, 18, 13),
+               new State(512, 268, 446, 368, 318, 218),
+               [ new Skill("逆轉乾坤", "對一個敵人造成傷害，並吸收一半傷害", 25, 24, sSlashAttack),
+                 new Skill("年獸咆嘯", "全體攻擊後，一定機率使對方無法行動", 37, 24, sPhysicalDown) ],
+               [ cAI2,
+                 cOMagicDefense ],
+               new Leader("攻擊防禦+15%", "攻擊力和防禦力上升15%", tBeast),
+               [ rWeak, rVoid, rHalf, rEqual, rWeak,
+                 rHalf, rHalf, rVoid, rEqual, rHalf,
+                 rVoid, rEqual, rEqual, rHalf, rEqual ] ),
+  new Monster( 8008, "紅中蛋", "https://2-t.imgbox.com/t9Iyxa6Y.jpg",
+               "和麻將牌裡面的『紅中』相似的特殊奇異蛋，湊齊三種之後，就能讓新春限定登場的怪物進行轉生喔！",
+               null, null, [],
+               rA, sReincarnation, tSpecial, 9,
+               new State(24, 18, 21, 15, 39, 36),
+               new State(24, 18, 21, 15, 39, 36),
+               [ ],
+               [ ],
+               lNone,
+               [ rEqual, rEqual, rEqual, rEqual, rEqual,
+                 rEqual, rEqual, rEqual, rEqual, rEqual,
+                 rEqual, rEqual, rEqual, rEqual, rEqual ] ),
+  new Monster( 8009, "白板蛋", "https://5-t.imgbox.com/ViDWIk5l.jpg",
+               "和麻將牌裡面的『白板』相似的特殊奇異蛋，湊齊三種之後，就能讓新春限定登場的怪物進行轉生喔！",
+               null, null, [],
+               rA, sReincarnation, tSpecial, 9,
+               new State(24, 18, 21, 15, 39, 36),
+               new State(24, 18, 21, 15, 39, 36),
+               [ ],
+               [ ],
+               lNone,
+               [ rEqual, rEqual, rEqual, rEqual, rEqual,
+                 rEqual, rEqual, rEqual, rEqual, rEqual,
+                 rEqual, rEqual, rEqual, rEqual, rEqual ] ),
+  new Monster( 8010, "青發蛋", "https://8-t.imgbox.com/8NrkrlWo.jpg",
+               "和麻將牌裡面的『青發』相似的特殊奇異蛋，湊齊三種之後，就能讓新春限定登場的怪物進行轉生喔！",
+               null, null, [],
+               rA, sReincarnation, tSpecial, 9,
+               new State(24, 18, 21, 15, 39, 36),
+               new State(24, 18, 21, 15, 39, 36),
+               [ ],
+               [ ],
+               lNone,
+               [ rEqual, rEqual, rEqual, rEqual, rEqual,
+                 rEqual, rEqual, rEqual, rEqual, rEqual,
+                 rEqual, rEqual, rEqual, rEqual, rEqual ] ),
+  new Monster( 8011, "土箱史萊姆", "https://0-t.imgbox.com/avaztljz.jpg",
+               "具有四方形身體，稜角分明的史萊姆。外表看起來就像一般的土塊，實際上也相當堅硬。和一般的史萊姆有些不一樣，防禦力略高的傢伙。",
+               null, null, [],
+               rB, sSlime, tDefense, 3,
+               new State(22, 16, 14, 15, 13, 28),
+               new State(284, 143, 183, 289, 257, 196),
+               [ new Skill("替身", "代替己方一個成員承受敵人的行動", 6, 8, sPhysicalUp),
+                 new Skill("土塊攻擊", "使用土塊般的身體衝撞敵人，一定機率降低對手的敏捷", 17, 18, sPhysicalDown) ],
+               [ cDodge,
+                 cODefUp ],
+               new Leader("防禦力+8%", "防禦力上升8%", tSlime),
+               [ rHalf, rEqual, rEqual, rWeak, rWeak,
+                 rHalf, rHalf, rEqual, rEqual, rEqual,
+                 rWeak, rWeak, rWeak, rEqual, rEqual ] ),
+  new Monster( 8012, "白虎", "https://4-t.imgbox.com/pfuhfq1L.jpg",
+               "追求極致力量的中國四神之一，用銳利的爪子和兇狠的眼神威嚇敵人，給她木天寥的話，說不定可以順利馴服她？",
+               null, null, [],
+               rSS, sX, tAttack, 27,
+               new State(19, 17, 21, 17, 23, 16),
+               new State(618, 251, 468, 421, 413, 315),
+               [ new Skill("白虎之爪", "隨機選中敵人進行連續攻擊並降低其攻擊力", 19, 65, sSlashDown),
+                 new Skill("白虎的激怒", "1回合之內，攻擊傷害變為2倍，並提高迴避率", 21, 21, sPhysicalUp),
+                 new Skill("白虎亂舞", "隊全體敵人造成傷害，並使其混亂", 25, 41, sDanceDown) ],
+               [ cAI23,
+                 new Characteristic("四神的祝福", "在戰鬥最開始發動，3回合內防禦異常狀態"),
+                 new Characteristic("猛虎添翼", "在偶數回合提升攻擊力、防禦力、敏捷及智力") ],
+               new Leader("攻擊力+18%", "攻擊力上升18%", tAll),
+               [ rVoid, rWeak, rHalf, rHalf, rHalf,
+                 rAbsord, rEqual, rVoid, rEqual, rVoid,
+                 rHalf, rEqual, rVoid, rEqual, rEqual ] )
+];
+for (i in mdata) {
+  twmonsters[mdata[i].no] = mdata[i];
+}
+
+var fnum = [ "０", "１", "２", "３", "４", "５", "６", "７", "８", "９" ];
+
+function displayOnDqmslSearch(id) {
+  var m = twmonsters[id];
+
+  var get_inc_base = function(n) {
+    var a = Math.floor(n / 10);
+    var b = a % 10;
+    b = b >= 5 ? 5 : 0;
+    a = Math.floor(a / 10);
+    var base = a * 100 + b * 10 + 1;
+    return n >= base ? base : base - powerup_unit;
+  };
+  var get_inc = function(base) {
+    return Math.floor(base * powerup_factor) + 1;
+  };
+  var hp_ib = get_inc_base(m.xstate.hp);
+  var mp_ib = get_inc_base(m.xstate.mp);
+  var atk_ib = get_inc_base(m.xstate.atk);
+  var def_ib = get_inc_base(m.xstate.def);
+  var agi_ib = get_inc_base(m.xstate.agi);
+  var wis_ib = get_inc_base(m.xstate.wis);
+  var hp_inc = get_inc(hp_ib);
+  var mp_inc = get_inc(mp_ib);
+  var atk_inc = get_inc(atk_ib);
+  var def_inc = get_inc(def_ib);
+  var agi_inc = get_inc(agi_ib);
+  var wis_inc = get_inc(wis_ib);
+
+  var powerup_block = [];
+  powerup_block.push(`
+    <!--<span id="sinseistar" class="sinseistaronoff ssf expImage2 pointer"></span>-->
+  `);
+  for (var i = 1; i <= 4; i++) {
+    powerup_block.push(`
+      <span id="star${i}" value="${i}" class="starssp stars${i} expImage2 pointer"></span>
+    `);
+  }
+  if (m.reinsrc != null) {
+    powerup_block.push(`
+      <img id="plus4" src="/img/plus.png" class="expImage2 pointer" style="margin-left:5px;" />
+    `);
+  }
+  powerup_block.push(`
+    <span style="font-size:10px;display: inline-block;color:#666;">上のアイコンをクリックするとパワーアップ時のステータスが反映されます。<span id="openCopyText" style="display:none;font-size:10px;" class="pointer linkTextB" >コピペ用</span></span>
+  `);
+  powerup_block = powerup_block.join("");
+
+  var skills_block = [];
+  for (var i in m.skills) {
+    var skill = m.skills[i];
+    skills_block.push(`
+      <span class="enclose3">
+        <span class="listHead2">${fnum[parseInt(i) + 1]}：</span>
+        <span class="${skill.stype.cls}"></span>
+        ${skill.name} (LV: ${skill.lv})  MP: ${skill.mp}
+        <br/>
+        (${skill.description})
+      </span>
+    `);
+  }
+  skills_block = skills_block.join("<div></div>");
+
+  var characteristics_block = [];
+  for (var i in m.characteristics) {
+    var c = m.characteristics[i];
+    characteristics_block.push(`
+      <span class='enclose3'>
+        ${fnum[parseInt(i) + 1]}：${c.name}
+        <br/>
+        (${c.description})
+      </span>
+    `);
+  }
+  characteristics_block = characteristics_block.join("<div></div>");
+
+  var reincarnation_block = [];
+  if (m.reindst != null || m.reinsrc != null) {
+    reincarnation_block.push(`
+      <div style="position:relative;border:solid 1px #ccc;padding:10px 10px;margin-top:10px;">
+      	<span class="detmhead">轉生</span>
+      	<div>
+    `);
+    var rm = m;
+    while(rm.reindst != null)
+      rm = twmonsters[rm.reindst];
+    while(rm != null) {
+      var rm_skills_block = [];
+      for (i in rm.skills) {
+        var skill = rm.skills[i];
+        rm_skills_block.push(`
+          <span style="width:300px;display:inline-block;">
+            <span class="listHead2">特技${fnum[parseInt(i) + 1]}：</span>
+            <span class="listHead2"></span>
+            <span class="${skill.stype.cls}"></span>${skill.name}
+          </span>
+        `);
+      }
+      rm_skills_block = rm_skills_block.join("");
+
+      var rm_reineggs_block = [];
+      for (i in rm.reineggs) {
+        var egg = rm.reineggs[i];
+        rm_reineggs_block.push(`
+          <a href="/monster/detail?no=${egg.no}" style="display: inline-block;">
+            <img  class="rotateImageButton" src="${egg.image}" style="width:40px;border-radius:4px;" />
+          </a>
+        `);
+      }
+      rm_reineggs_block = rm_reineggs_block.join("");
+
+      reincarnation_block.push(
+      `
+      <div style="background:${rm == m ? "#D2DFEC" : "#fafafa"};padding:5px;position:relative;margin: 5px 0;border: solid 1px #CCC;" class="hoverblue2">
+        <div class="${rm == m ? "tnscur" : "tnsoth"}"></div>
+        <div class="srcimg2">
+          ${rm == m ? "" : "<a href='/monster/detail?no=" + rm.no + "' title='" + rm.name + "的詳細資料'>"}
+            <img class="rotateImageButton" src="${rm.image}" alt="${rm.name}" style="width: 50px; float: left; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; transform: rotate(0deg); transform-origin: 50% 50%;">
+          ${rm == m ? "" : "</a>"}
+        </div>
+        <div style="display:inline-block;vertical-align: bottom;margin-left:5px;width:120px;">
+          <span style="width:85px;display:inline-block;">
+            <span class="listHead2">級別：</span>
+            <span class="${rm.rank.cls}" style="vertical-align: top;"></span>
+          </span>
+          <div></div>
+          <span style="width:75px;display:inline-block;">
+            <span class="listHead2">No：</span>${rm.no}
+          </span>
+          <div></div>
+          <span style="display: block;height: 21px;width: 120px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
+            ${rm.name}
+          </span>
+        </div>
+        <div style="display:inline-block;vertical-align: bottom;width:250px;">
+          <span style="width:300px;display:inline-block;">
+            <span class="listHead2">
+              <span style="width:51px;display:inline-block;">經驗值</span>：
+            </span>
+            ?
+          </span>
+          ${rm_skills_block}
+        </div>
+        <div style="position:absolute;top:-24px;right:10px;">
+        </div>
+        <div style="position:absolute;top:-24px;right:10px;">
+          ${rm_reineggs_block}
+        </div>
+      </div>
+      `);
+      rm = twmonsters[rm.reinsrc];
+    }
+    reincarnation_block.push(`
+        </div>
+      </div>
+    `);
+  }
+  reincarnation_block = reincarnation_block.join("");
+
+  var html = `
+    <div class='mbox'>
+      <!-- name -->
+      <div class='mboxh' style="height: 55px;">
+        <img  id="msIcn" src="${m.image}" alt="${m.name}" style="position: absolute; left: 10px; width: 70px; border-radius: 6px;" class="rotateImageButton" />
+        <h1 style='display: inline-block; font-size: 20px; margin-top: 25px; margin-left: 95px; width: 480px; height: 30px; overflow: hidden;'>
+          ${m.name}
+          <span style="color: #999;font-weight: normal;font-size: 14px;margin-left: 10px;vertical-align: middle;">- Monster data Advanced Search -</span>
+        </h1>
+      </div>
+      <!-- end of name -->
+      <!-- basic info -->
+      <div class='mboxb'>
+        <span style='display: inline-block; font-size: 12px; margin-left: 85px; color: #666;'>${m.description}</span>
+        <div style="clear: both;"></div>
+        <div style="position: relative; border: solid 1px #ccc; padding: 10px; margin-top: 20px;">
+          <span class="detmhead">基本項目</span>
+          <div>
+            <span class="enclose3">
+              <span class="listHead2">No：</span>${m.no}
+            </span>
+            <span class="enclose3">
+              <a class="linkTextF" href="/picturebook/rank?rank=${m.rank.id}" title="${m.rank.name}怪物圖鑑">
+                <span class="listHead2">級別：</span><span class="${m.rank.cls}" style="vertical-align: top;"></span>
+              </a>
+            </span>
+            <span class="enclose3">
+              <a href="/picturebook/system?system=${m.system.id}" class="linkTextF" title="${m.system.name}怪物圖鑑">
+                <span class="listHead2">系統：</span>${m.system.name}
+              </a>
+            </span>
+            <span class="enclose3">
+              <a href="/picturebook/type?type=${m.type.id}" class="linkTextF" title="${m.type.id}類型怪物圖鑑">
+                <span class="listHead2">類型：</span>${m.type.name}
+              </a>
+            </span>
+            <span class="enclose3">
+              <a href="/picturebook/weight?weight=${m.weight}" class="linkTextF" title="重量[${m.weight}]怪物圖鑑">
+                <span class="listHead2">重量：</span>${m.weight}
+              </a>
+            </span>
+            <span class="enclose3">
+              <span class="listHead2">最大等級：</span>${m.rank.xlevel}
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- end of basic info -->
+      <!-- states, skills, ... -->
+      <div class="mboxb" style="background-color: #f5f5f5; padding: 5px 10px 10px 10px; border-top: none;">
+        <!-- states -->
+        <div style="position:relative;border:solid 1px #ccc;padding:10px;margin-top:10px;vertical-align: top;">
+          <span class="detmhead">狀態</span>
+          <div>
+            <span style="display: inline-block; font-size: 11px; color: #666;">最大等級${m.rank.xlevel}のステータスを表示しています</span><br />
+            <span id="powerupInheritInfoImage"  style="background-image:url(/img/info.png);position: absolute;left: 241px;top: 5px;width:30px;height:30px;" >
+              <div id="inheritInfoPanel" style="display: none; position: fixed; top: 100px; left: 15%; width: 550px; height: 450px; padding: 10px; text-align: center; background: #fafafa;z-index: 10;box-shadow: 5px 0px 9px -3px rgba(0, 0, 0, 0.2),-5px 0px 9px -3px rgba(0, 0, 0, 0.2),0px -5px 9px -3px rgba(0, 0, 0, 0.2),0px 5px 9px -3px rgba(0, 0, 0, 0.2);">
+                <span style="display: block;font-weight:bold;margin:10px 10px 0;">デビルドラグナーの最大パワーアップ引き継ぎ補正値が得られるステータス情報</span>
+                <div style="position:relative;padding:10px 10px 10px 10px;">
+                  <table class="tbl" style="margin: 0;" >
+                    <tr style="background: #EFEFEF;">
+                      <th style="vertical-align: middle;padding: 2px 10px;width: 150px;" colspan="2"><span >ステータス</span></th>
+                      <td style="vertical-align: middle;width: 60px;padding:2px 10px;font-weight:bold;">引き継ぎ<br />補正値</td>
+                      <td style="width: 100px;padding:2px 10px;font-weight:bold;">最大補正値が得られるおよその最低レベル</td>
+                    </tr>
+                    <tr style="background: #fafafa;">
+                      <td style="text-align:left;padding-left:15px;border-left: 0;">HP</td>
+                      <td style="text-align: right;padding-right: 15px;">${hp_ib} 以上</td>
+                      <td style="text-align: center;" >${hp_inc}</td>
+                      <td style="text-align: center;vertical-align: middle;font-size: 50px;font-weight: bold;" rowspan="6" >?</td>
+                    </tr>
+                    <tr style="background: #fafafa;">
+                      <td style="text-align:left;padding-left:15px;border-left: 0;">MP</td>
+                      <td style="text-align: right;padding-right: 15px;" >${mp_ib} 以上</td>
+                      <td style="text-align: center;" >${mp_inc}</td>
+                    </tr>
+                    <tr style="background: #fafafa;">
+                      <td style="text-align:left;padding-left:15px;border-left: 0;">攻撃力</td>
+                      <td style="text-align: right;padding-right: 15px;" >${atk_ib} 以上</td>
+                      <td style="text-align: center;" >${atk_inc}</td>
+                    </tr>
+                    <tr style="background: #fafafa;">
+                      <td style="text-align:left;padding-left:15px;border-left: 0;">防御力</td>
+                      <td style="text-align: right;padding-right: 15px;" >${def_ib} 以上</td>
+                      <td style="text-align: center;" >${def_inc}</td>
+                    </tr>
+                    <tr style="background: #fafafa;">
+                      <td style="text-align:left;padding-left:15px;border-left: 0;">敏捷</td>
+                      <td style="text-align: right;padding-right: 15px;" >${agi_ib} 以上</td>
+                      <td style="text-align: center;" >${agi_inc}</td>
+                    </tr>
+                    <tr style="background: #fafafa;">
+                      <td style="text-align:left;padding-left:15px;border-left: 0;">智力</td>
+                      <td style="text-align: right;padding-right: 15px;" >${wis_ib} 以上</td>
+                      <td style="text-align: center;" >${wis_inc}</td>
+                    </tr>
+                  </table>
+                  <div style="margin:5px 10px;">
+                    <span style="font-size:11px;">※各ステータスが上記の数値以上となるレベルでパワーアップを行うと、最大レベル時のパワーアップと同じ補正値を引き継ぐことができます。</span><br />
+                    <span style="font-size:11px;">※モンスターの最大レベルステータスによっては、最大レベルでなくとも最大レベルと同じ補正値を引き継げる場合があり、ここではそういった効率の良いパワーアップを行う為およその最低レベルを表示しています。</span><br />
+                    <span style="font-size:11px;">※およその最低レベルは最大ステータス値により自動算出しており、実際とは異なっている場合があります。育成中のモンスターが最低レベル付近となった際にステータスを見て、上記以上であればパワーアップで最大補正値が得られますので参考にしてみてください。</span>
+                  </div>
+                </div>
+              </div>
+            </span>
+            <div style="width:250px;float:left;">
+              <span class="enclose3" style="width:220px;">
+                <span class="listHead2"><span style="width:45px;display:inline-block;">HP</span>：</span>
+                <span style="display:inline-block;width:90px;text-align:right;" id="hpid">${m.xstate.hp}</span>
+              </span>
+              <span class="enclose3" style="width:220px;">
+                <span class="listHead2"><span style="width:45px;display:inline-block;">MP</span>：</span>
+                <span style="display:inline-block;width:90px;text-align:right;" id="mpid">${m.xstate.mp}</span>
+              </span>
+              <span class="enclose3" style="width:220px;">
+                <span class="listHead2"><span style="width:45px;display:inline-block;">攻撃力</span>：</span>
+                <span style="display:inline-block;width:90px;text-align:right;" id="ofid">${m.xstate.atk}</span>
+              </span>
+              <span class="enclose3" style="width:220px;">
+                <span class="listHead2"><span style="width:45px;display:inline-block;">防御力</span>：</span>
+                <span style="display:inline-block;width:90px;text-align:right;" id="dfid">${m.xstate.def}</span>
+              </span>
+              <span class="enclose3" style="width:220px;">
+                <span class="listHead2"><span style="width:45px;display:inline-block;">敏捷</span>：</span>
+                <span style="display:inline-block;width:90px;text-align:right;" id="dxid">${m.xstate.agi}</span>
+              </span>
+              <span class="enclose3" style="width:220px;">
+                <span class="listHead2"><span style="width:45px;display:inline-block;">智力</span>：</span>
+                <span style="display:inline-block;width:90px;text-align:right;" id="eiid">${m.xstate.wis}</span>
+              </span>
+              <span class="enclose3" style="width:220px;">
+                <span class="listHead2"><span style="width:45px;display:inline-block;">合計値</span>：</span>
+                <span style="display:inline-block;width:90px;text-align:right;" id="ssmid">${m.xstate.sum()}</span>
+              </span>
+              <span class="enclose3" style="width:220px;text-align: center;padding-top: 0;padding-bottom: 0;position:relative;">
+								<span class="listHead2" style="font-weight:normal;">
+									<span style="font-size:10px;display: block;font-weight:bold;">合星能力計算</span>
+                  ${powerup_block}
+								</span>
+							</span>
+            </div>
+            <div style="clear:both;"></div>
+          </div>
+        </div>
+        <!-- end of states -->
+        <!-- skills, characteristics, ... -->
+        <div style="">
+          <div style="">
+            <!-- skills and leader characteristics -->
+        	  <div style="float:left;">
+              <!-- skills -->
+        			<div style="position:relative;border:solid 1px #ccc;padding:10px;margin-top:10px;width: 325px;vertical-align: top;">
+        				<span class="detmhead">特技</span>
+        			  <div>
+                  ${skills_block}
+        				</div>
+        			</div>
+              <!-- end of skills -->
+              <!-- leader characteristic -->
+        		  <div style="position:relative;border:solid 1px #ccc;padding:10px;margin-top:10px;width: 325px;vertical-align: top;">
+        		    <span class="detmhead">隊長特性</span>
+        			  <div>
+        			    <span class="enclose3">
+        		        <span class="listHead2">効果：
+        						  <span class="lskill ls${m.leader.target == null ? "" : m.leader.target.cls}"></span>
+                    </span>
+                    ${m.leader.target == null ? "" : m.leader.target.name} ${m.leader.name}
+        					</span>
+        				</div>
+        			</div>
+              <!-- end of leader characteristic -->
+        		</div>
+            <!-- end of skills and leader characteristic -->
+            <!-- characteristics -->
+        		<div style="float:right;">
+        			<div style="position:relative;border:solid 1px #ccc;padding:10px;margin-top:10px;width: 325px;vertical-align: top;">
+        				<span class="detmhead">特性</span>
+        				<div>
+                  ${characteristics_block}
+        				</div>
+        			</div>
+        	  </div>
+            <!-- end of characteristics -->
+        	</div>
+        	<div style="clear:both;"></div>
+        </div>
+        <!-- end of skills, characteristics, ... -->
+      </div>
+      <!-- end ob mboxb for states, skills, ... -->
+      <!-- resistance -->
+      <div style="position:relative;border:solid 1px #ccc;padding:10px;margin-top:10px;">
+        <span class="detmhead">耐性</span>
+      	<div>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=1" title="メラ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">美拉</span></a>：</span><span class="tisis"></span><span class="${m.resists[0].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=2" title="ヒャド耐性別モンスター図鑑をみる"><span class="tisih linkTextF">夏德</span></a>：</span><span class="tisis"></span><span class="${m.resists[1].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=3" title="ギラ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">基拉</span></a>：</span><span class="tisis"></span><span class="${m.resists[2].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=4" title="バギ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">巴基</span></a>：</span><span class="tisis"></span><span class="${m.resists[3].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=5" title="イオ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">伊奧</span></a>：</span><span class="tisis"></span><span class="${m.resists[4].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=6" title="デイン耐性別モンスター図鑑をみる"><span class="tisih linkTextF">迪恩</span></a>：</span><span class="tisis"></span><span class="${m.resists[5].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=7" title="ドルマ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">德爾瑪</span></a>：</span><span class="tisis"></span><span class="${m.resists[6].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=8" title="ザキ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">札奇</span></a>：</span><span class="tisis"></span><span class="${m.resists[7].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=9" title="マホトーン耐性別モンスター図鑑をみる"><span class="tisih linkTextF">瑪霍托恩</span></a>：</span><span class="tisis"></span><span class="${m.resists[8].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=10" title="マヌーサ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">瑪努撒</span></a>：</span><span class="tisis"></span><span class="${m.resists[9].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=11" title="毒耐性別モンスター図鑑をみる"><span class="tisih linkTextF">毒</span></a>：</span><span class="tisis"></span><span class="${m.resists[10].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=12" title="眠り耐性別モンスター図鑑をみる"><span class="tisih linkTextF">睡眠</span></a>：</span><span class="tisis"></span><span class="${m.resists[11].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=13" title="こんらん耐性別モンスター図鑑をみる"><span class="tisih linkTextF">混亂</span></a>：</span><span class="tisis"></span><span class="${m.resists[12].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=14" title="マヒ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">痲痹</span></a>：</span><span class="tisis"></span><span class="${m.resists[13].cls}"></span></span>
+      		<span class="enclose4" style="width: 106px;"><span class="listHead2"><a href="/picturebook/resist?kind=15" title="息封じ耐性別モンスター図鑑をみる"><span class="tisih linkTextF">氣息封印</span></a>：</span><span class="tisis"></span><span class="${m.resists[14].cls}"></span></span>
+      	</div>
+      </div>
+      <!-- end of resistance -->
+      <!-- reincarnation -->
+      ${reincarnation_block}
+      <!-- end of reincarnation -->
+    </div>
+    <!-- end of mbox -->
+  `;
+  $(".ccol").html(html);
+
+  document.title = m.name;
+
+  $("#powerupInheritInfoImage").mouseover(function() {
+    $("#inheritInfoPanel").css("display", "inline-block");
+  }).mouseleave(function() {
+    $("#inheritInfoPanel").css("display", "none");
+  });
+
+  var setState = function(state) {
+    var base = m.xstate;
+    var diff = state.sub(base);
+    $("#hpid").html(state.hp + (diff.hp == 0 ? "" : " (+" + diff.hp + ")"));
+    $("#mpid").html(state.mp + (diff.mp == 0 ? "" : " (+" + diff.mp + ")"));
+    $("#ofid").html(state.atk + (diff.atk == 0 ? "" : " (+" + diff.atk + ")"));
+    $("#dfid").html(state.def + (diff.def == 0 ? "" : " (+" + diff.def + ")"));
+    $("#dxid").html(state.agi + (diff.agi == 0 ? "" : " (+" + diff.agi + ")"));
+    $("#eiid").html(state.wis + (diff.wis == 0 ? "" : " (+" + diff.wis + ")"));
+    $("#ssmid").html(state.sum() + (diff.sum() == 0 ? "" : " (+" + diff.sum() + ")"));
+  };
+  for (var i = 1; i <= 4; i++) {
+    $("#star" + i).click((function(i) {
+      var star = stars[i];
+      return function() {
+        var p = $("#plus4").attr('class') == plus4_scls;
+        if ($(this).attr('class') == star.scls) {
+          // deselect
+          $(this).attr('class', star.cls);
+          setState(m.getMergedState(0, p));
+        } else {
+          // select
+          for (var j = 1; j <= 4; j++) {
+            if (j == i) continue;
+            $("#star" + j).attr('class', stars[j].cls);
+          }
+          $(this).attr('class', star.scls);
+          setState(m.getMergedState(i, p));
+        }
+      };
+    })(i));
+  }
+  $("#plus4").click(function() {
+    var p;
+    if ($(this).attr('class') == plus4_scls) {
+      // deselect
+      $(this).attr('class', plus4_cls);
+      p = false;
+    } else {
+      // select
+      $(this).attr('class', plus4_scls);
+      p = true;
+    }
+    var c;
+    for (var i = 1; i <= 4; i++) {
+      if ($("#star" + i).attr('class') == stars[i].scls) {
+        c = i;
+        break;
+      }
+    }
+    setState(m.getMergedState(c, p));
+  });
+}
+
+function getMonsterIcon(m) {
+  return `
+    <div style="display: inline-block; width: 74px; height: 80px; vertical-align: top;">
+      <a href="/monster/detail?no=${m.no}" title="${m.name}的詳細資料"  >
+        <img  class="rotateImageButton" src="${m.image}" alt="${m.name}" style="width:63px;border-radius:5px;" />
+      </a>
+      <span style="font-size: 11px; display: inline-block; width: 70px; height: 15px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; -o-text-overflow: ellipsis;">${m.name}</span>
+    </div>
+  `;
+}
+
+function insertToDqmslSearchSystem(sid) {
+  var mboxes = $(".ccol").children("div.mbox");
+  for (var no in twmonsters) {
+    var m = twmonsters[no];
+    if (sid != null && m.system.id != sid)
+      continue;
+    var box = mboxes[sid == null ? parseInt(m.system.id) : 1];
+    $(box).children("div.mboxb").append(getMonsterIcon(m));
+  }
+}
+
+function insertToDqmslSearchRank(rid) {
+  var mboxes = $(".ccol").children("div.mbox");
+  for (var no in twmonsters) {
+    var m = twmonsters[no];
+    if (rid != null && m.rank.id != rid)
+      continue;
+    var box = mboxes[rid == null ? 9 - parseInt(m.rank.id) : 1];
+    $(box).children("div.mboxb").append(getMonsterIcon(m));
+  }
+}
+
+function insertToDqmslSearchType(tid) {
+  var mboxes = $(".ccol").children("div.mbox");
+  for (var no in twmonsters) {
+    var m = twmonsters[no];
+    if (tid != null && m.type.id != tid)
+      continue;
+    var box = mboxes[tid == null ? parseInt(m.type.id) : 1];
+    $(box).children("div.mboxb").append(getMonsterIcon(m));
+  }
+}
+
 /* ==================== Auxiliary Functions ===================== */
 
 RegExp.escape = function(s) {
@@ -1918,7 +2759,7 @@ var groups = [keys];
 function insertSkillDetails(imgs) {
   for (var i in imgs) {
     var img = imgs[i];
-    var match = img.src.match(/\/img\/skill\/(\d+).jpg/);
+    var match = img.src ? img.src.match(/\/img\/skill\/(\d+).jpg/) : null;
     if (match != null) {
       var id = parseInt(match[1]);
       if (id in skills && skills[id].detail != "") {
@@ -1959,5 +2800,41 @@ function subst() {
     insertSkillDetails(imgs);
 };
 
-if (window.top == window.self)
-  $(subst);
+function twversion() {
+  var h = $(location).attr('hostname');
+  var p = $(location).attr('pathname');
+  var s = $(location).attr('search');
+  var match = s.match(/\?no=(\d+)/);
+  var id = "";
+  if (match != null)
+    id = parseInt(match[1]);
+
+  /* do translation */
+  subst();
+
+  /* show details of TW-only monsters */
+  if (p == "/monster/detail" && id in twmonsters) {
+    if (h == dqmsl_search_url) displayOnDqmslSearch(id);
+  }
+
+  /* insert TW-only monsters to picturebooks */
+  var pbs = [
+    {name: "system", doit: insertToDqmslSearchSystem},
+    {name: "rank", doit: insertToDqmslSearchRank},
+    {name: "type", doit: insertToDqmslSearchType}
+  ];
+  for (var i in pbs) {
+    var pb = pbs[i];
+    if (p == "/picturebook/" + pb.name) {
+      var match = s.match(pb.name + "=(\\d+)");
+      var id = null;
+      if (match) id = parseInt(match[1]);
+      if (h == dqmsl_search_url) pb.doit(id);
+    }
+  }
+
+}
+
+if (window.top == window.self) {
+  $(twversion);
+}
