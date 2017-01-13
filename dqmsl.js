@@ -2189,7 +2189,23 @@ var mdata = [
                new Leader("攻擊力+18%", "攻擊力上升18%", tAll),
                [ rVoid, rWeak, rHalf, rHalf, rHalf,
                  rAbsord, rEqual, rVoid, rEqual, rVoid,
-                 rHalf, rEqual, rVoid, rEqual, rEqual ] )
+                 rHalf, rEqual, rVoid, rEqual, rEqual ] ),
+  new Monster( 8013, "玄武", "https://i.imgbox.com/2qdJQ1Jh.jpg",
+               "俏勇善戰的中國四神之一，個性認真，常勤練武功，揮舞槍的身姿如同跳舞一般令人著迷，身上的青蛇似乎是他的寵物。",
+               null, null, [],
+               rSS, sX, tAttack, 27,
+               new State(20, 16, 22, 19, 21, 19),
+               new State(735, 261, 401, 410, 358, 291),
+               [ new Skill("真・爆彈亂武", "隨機連續攻擊，對？？？系的魔物造成巨大傷害", 21, 45, sPhysicalAttack),
+                 new Skill("玄武的激怒", "戰鬥中僅1次，對全體敵人造成特大咒文傷害", 48, 120, sMagicAttack),
+                 new Skill("真武神的氣息", "對全體敵人造成氣息傷害，並封印其體技", 25, 42, sBreathDown) ],
+               [ cAI23,
+                 new Characteristic("四神的祝福", "在戰鬥最開始發動，3回合內防禦異常狀態"),
+                 new Characteristic("聖之盾", "當受到傷害大於目前血量，偶爾會變成1的狀態") ],
+               new Leader("氣息效果+20%", "氣息傷害上升20%", tAll),
+               [ rEqual, rHalf, rEqual, rHalf, rHalf,
+                 rWeak, rAbsord, rVoid, rVoid, rVoid,
+                 rEqual, rEqual, rVoid, rEqual, rEqual ] )
 ];
 for (i in mdata) {
   twmonsters[mdata[i].no] = mdata[i];
