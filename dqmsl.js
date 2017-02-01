@@ -2257,7 +2257,7 @@ var mdata = [
                new State(23, 18, 20, 16, 19, 12),
                new State(502, 285, 310, 310, 290, 300),
                [ new Skill("槓上開花", "提升己方全體對咒文和氣息的耐性", 28, 36, sPhysicalUp),
-                 new Skill("四喜臨門", "對全體敵人造成傷害，降低攻擊力和智利", 21, 45, sPhysicalDown) ],
+                 new Skill("四喜臨門", "對全體敵人造成傷害，降低攻擊力和智力", 21, 45, sPhysicalDown) ],
                [ cAI2,
                  cRecoverMP,
                  new Characteristic("年獸的守護", "戰鬥的最開始發動 防禦力提升") ],
