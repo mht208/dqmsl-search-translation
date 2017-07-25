@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "DQMSL Search Translation",
-  "version": "2017.7.14.0",
+  "version": "2017.7.25.0",
   "description": "Translate names in DQMSL Search (http://dqmsl-search.net) to Chinese",
   "author": "Ming-Hsien Tsai",
   "homepage_url": "https://github.com/mht208/dqmsl-search-translation",
