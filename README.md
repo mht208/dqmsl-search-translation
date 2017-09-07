@@ -47,7 +47,9 @@ in Safari.
 ### Mozilla Firefox for Android
 
 - Install the extension USI. (https://addons.mozilla.org/zh-TW/firefox/addon/userunified-script-injector/)
-- In USI plugin settings, click "load Userscript" and load "dqmsl.user.js" manually.
+- In "USI options", click "load Userscript"
+- In the "Direct Userscript Upload" section, click "Browse" and navigate to "dqmsl.user.js"
+- Click "Start" button.
 
 ## Uninstall
 
