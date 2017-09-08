@@ -44,6 +44,13 @@ in Safari.
 - Drag and drop the file "dqmsl.user.js" to a Firefox window.
 - Click the Install button.
 
+### Mozilla Firefox for Android
+
+- Install the extension USI. (https://addons.mozilla.org/zh-TW/firefox/addon/userunified-script-injector/)
+- In "USI options", click "load Userscript"
+- In the "Direct Userscript Upload" section, click "Browse" and navigate to "dqmsl.user.js"
+- Click "Start" button.
+
 ## Uninstall
 
 Depending on the browser, perform the following steps to uninstall this
