@@ -3278,6 +3278,6 @@ function twversion() {
 
 }
 
-if (window.top == window.self) {
+if (window.top == window) {
   $(twversion);
 }
