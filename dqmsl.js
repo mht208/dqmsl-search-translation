@@ -1055,7 +1055,7 @@ var monsters = {
     942: {jn: "ずしおうまる", cn: "壽司王丸"},
     943: {jn: "ブルサベージ", cn: "暴烈野人"},
     //944: {jn: "", cn: ""},
-    //945: {jn: "", cn: ""},
+    945: {jn: "ミニモン", cn: "迷你魔"},
     //946: {jn: "", cn: ""},
     //947: {jn: "", cn: ""},
     //948: {jn: "", cn: ""},
@@ -1209,7 +1209,7 @@ var skills = {
     1035: {jn: "ドルマータ", cn: "德爾瑪塔", detail: "隨機對全體敵人造成暗屬性傷害"},
     1036: {jn: "ジゴデイン", cn: "吉格迪恩", detail: "對單個敵人造成極大的光系傷害"},
     1037: {jn: "五指爆炎弾", cn: "五指爆炎彈", detail: "對全體敵人造成隨機的火咒文大傷害"},
-    1038: {jn: "バギマータ", cn: "", detail: ""},
+    1038: {jn: "バギマータ", cn: "巴基瑪特", detail: "對全體敵人隨機造成巴基系咒文傷害"},
     1039: {jn: "ドルオーラ", cn: "多魯歐拉", detail: "在戰鬥中僅會發動1次，在回合最後時給予敵方全體咒文的特大傷害"},
     1040: {jn: "カイザーフェニックス", cn: "皇者不死鳥", detail: "對1個敵人造成火屬性特大傷害"},
 
@@ -1367,8 +1367,8 @@ var skills = {
     6085: {jn: "リバースブレイク", cn: "裡巴斯打擊", detail: "對處於裡巴斯狀態下的敵人造成特大傷害"},
     6086: {jn: "必殺の一撃", cn: "必殺一擊", detail: "對一個敵人施展無法閃避的極大傷害斬擊"},
     6087: {jn: "超魔爆炎覇", cn: "超魔爆炎霸", detail: "對1個敵人造成傷害並給予敵方全體伊奧系的體技傷害"},
-    6088: {jn: "ギロチンアックス", cn: "", detail: ""},
-    6089: {jn: "しっそう閃光突き", cn: "", detail: ""},
+    6088: {jn: "ギロチンアックス", cn: "斷頭之斧", detail: "對1個敵人造成2.5倍的傷害，之後對自己造成傷害"},
+    6089: {jn: "しっそう閃光突き", cn: "疾風閃光刺", detail: "在一輪最開始行動，對1個敵人造成迪恩系斬擊傷害"},
     6090: {jn: "聖皇十字剣", cn: "聖皇十字劍", detail: "對全體敵人造成特大斬擊傷害"},
     6091: {jn: "秘剣ギガブレイク", cn: "秘劍基加丁破壞斬", detail: "對1個敵人造成迪恩系的特大傷害"},
     6092: {jn: "カラミティエンド", cn: "災厄終結", detail: "對？？？系的魔物造成特大傷害"},
@@ -1512,7 +1512,7 @@ var skills = {
     8056: {jn: "唸れ！真空の斧よ！", cn: "怒吼吧！真空斧！", detail: "對全體敵人造成巴基系的傷害"},
     8057: {jn: "獣王激烈掌", cn: "獸王激烈掌", detail: "對全體敵人造成無屬性體技傷害"},
     8058: {jn: "弾岩爆花散", cn: "彈岩爆花散", detail: "隨機給予美拉以及夏德的傷害，自己也會承受傷害"},
-    8059: {jn: "ミラクルブロウ", cn: "", detail: ""},
+    8059: {jn: "ミラクルブロウ", cn: "奇蹟突襲", detail: "對1個敵人造成傷害，並吸收傷害的3/4"},
     8060: {jn: "紋章閃", cn: "紋章閃", detail: "對1個敵人造成無屬性的特大體技傷害"},
     8061: {jn: "カラミティウォール", cn: "災厄之牆", detail: "對全體敵人造成無屬性的特大體技傷害"},
     8062: {jn: "超熱拳", cn: "超熱拳", detail: "在一輪最開始行動，對1個敵人造成體技傷害"},
@@ -1551,6 +1551,7 @@ var skills = {
     9023: {jn: "超魔再生", cn: "超魔再生", detail: "進行自我的HP大恢復並提升自我的能力"},
     9024: {jn: "竜の血", cn: "龍之血", detail: "復活己方1個成員並恢復一半的HP，同時提升其攻擊力與防禦力"},
     9025: {jn: "やすらぎのしずく", cn: "安寧之露", detail: "在回合最後恢復己方全體的HP"},
+    9026: {jn: "妖精のうたごえ", cn: "妖精的歌聲", detail: "復活己方1個成員，恢復對應智力值的HP"},
 
     /* 體技異常狀態 */
     6036: {jn: "つきとばし", cn: "撞飛", detail: "對一個敵人造成傷害，一定概率使其無法行動"},
@@ -1624,8 +1625,8 @@ var skills = {
     10056: {jn: "乱心の波動", cn: "亂心波動", detail: "以高概率使全體敵人混亂"},
     10057: {jn: "氷漬け", cn: "冰鎮", detail: "對一個敵人造成夏德系的傷害並吸收其攻擊力3分之1的MP"},
     10058: {jn: "氷炎爆花散", cn: "冰炎爆花散", detail: "隨機給予美拉以及夏德的傷害並使其相關的耐性下降"},
-    10059: {jn: "粉砕の波動", cn: "", detail: ""},
-    10060: {jn: "ぶきみな風", cn: "", detail: ""},
+    10059: {jn: "粉砕の波動", cn: "粉碎波動", detail: "對全體敵人造成大量傷害並降低防禦力"},
+    10060: {jn: "ぶきみな風", cn: "詭異之風", detail: "降低全體敵人的巴基耐性"},
     10061: {jn: "はげしくなぐりつける", cn: "猛烈痛打", detail: "隨機對敵人造成傷害並停止其行動"},
     10062: {jn: "死神の笛", cn: "死神之笛", detail: "降低全體敵人的攻撃力和智力"},
     10063: {jn: "芸術スペシャル", cn: "特別藝術", detail: "以高概率使敵我雙方全體混亂"},
@@ -1826,6 +1827,7 @@ var characteristics = {
     "ひん死でみかわし": "瀕死時發動會心一擊",
     "ひん死でピオラ": "瀕死時發動比奧拉",
     "ひん死で呪文会心でやすい": "瀕死時咒文容易出現會心一擊",
+    "ひん死でちからため": "瀕死時蓄力（再回合一開始，且剩餘HP在1/4以下時，攻擊力變更為2倍）",
 
     "ゴールド増": "金幣上升",
     "みかわしアップ": "閃避上升",
@@ -1884,7 +1886,9 @@ var characteristics = {
     "名工の誇り": "名匠的驕傲（在回合最開始偶爾發動，防禦行動停止系和封印系效果）",
     "鬼眼": "鬼眼（在偶數輪開始發動，MP大量恢復）",
     "経験値増": "增加經驗值（完成關卡時，獲得經驗值增加1.1倍，同樣效果不能重複）",
-    "執事の心得": "管家的心得（在力竭之時恢復己方全體的HP）"
+    "執事の心得": "管家的心得（在力竭之時恢復己方全體的HP）",
+    "ちこくま": "晚點魔（時常行動順序為回合的最後）",
+    "小悪魔のたくらみ": "小惡魔的企圖（在偶數輪最開始發動，MP大幅恢復）"
 };
 
 /* ==================== 裝備 ==================== */
@@ -2181,17 +2185,18 @@ var Characteristic = function(name, description) {
   this.name = name;
   this.description = description;
 };
-var cAI12 = new Characteristic("AI行動1-2次", "1回合中1~2回連續行動 第2次以後的行動 會使用普通攻擊");
-var cAI2 = new Characteristic("AI行動2次", "1回合中2回連續行動 第2次以後的行動 會使用普通攻擊");
-var cAI23 = new Characteristic("AI行動2-3次", "1回合中2~3回連續行動 第2次以後的行動 會使用普通攻擊");
+var cAI12 = new Characteristic("AI行動1-2次", "1回合中1~2回連續行動，第2次以後的行動，會使用普通攻擊");
+var cAI2 = new Characteristic("AI行動2次", "1回合中2回連續行動，第2次以後的行動，會使用普通攻擊");
+var cAI23 = new Characteristic("AI行動2-3次", "1回合中2~3回連續行動 第2次以後的行動，會使用普通攻擊");
 var cDodge = new Characteristic("閃避提升", "閃避率提升");
-var cODefUp = new Characteristic("偶發斯卡拉", "在一輪最開始偶爾發動 防禦力提升");
-var cOMagicDefense = new Characteristic("偶發瑪霍卡恩塔", "在一輪最開始偶爾發動 咒文反彈");
-var cRecoverMP = new Characteristic("自動恢復MP", "行動後 MP稍微恢復");
+var cODefUp = new Characteristic("偶發斯卡拉", "在一輪最開始偶爾發動，防禦力提升");
+var cOMagicDefense = new Characteristic("偶發瑪霍卡恩塔", "在一輪最開始偶爾發動，咒文反彈");
+var cOAttackUp = new Characteristic("偶發巴依奇爾托", "在一輪最開始偶爾發動，攻擊力提升");
+var cRecoverMP = new Characteristic("自動恢復MP", "行動後，MP稍微恢復");
 var cRecoverMP2 = new Characteristic("自動大幅恢復MP", "行動後MP回復");
-var cRecoverHP = new Characteristic("自動恢復HP", "行動後 HP稍微恢復");
-var cIncreaseGold = new Characteristic("金幣增加", "完成關卡時 獲得金幣增加1.2倍 同樣效果不能重複");
-var cEasyCriticalHit = new Characteristic("容易出現會心一擊", "會心一擊 稍微容易出現");
+var cRecoverHP = new Characteristic("自動恢復HP", "行動後，HP稍微恢復");
+var cIncreaseGold = new Characteristic("金幣增加", "完成關卡時，獲得金幣增加1.2倍，同樣效果不能重複");
+var cEasyCriticalHit = new Characteristic("容易出現會心一擊", "會心一擊，稍微容易出現");
 
 var Leader = function(name, description, target) {
   this.name = name;
@@ -2243,6 +2248,8 @@ var west_egg = new Egg(8023, "西風蛋", "https://7-t.imgbox.com/UVY82VL1.jpg")
 var north_egg = new Egg(8024, "北風蛋", "https://0-t.imgbox.com/K9fDRNxR.jpg");
 var king_egg = new Egg(415, "奇異蛋之王", "/img/icon/000415.gif");
 var rainbow_egg = new Egg(416, "彩虹蛋", "/img/icon/000416.gif");
+var emperor_egg = new Egg(422, "帝王之蛋", "/img/icon/000422.gif");
+var general_egg = new Egg(423, "將軍之蛋", "/img/icon/000423.gif");
 
 var Star = function(id) {
   this.id = id;
@@ -2607,7 +2614,94 @@ var mdata = [
                new Leader("敏捷+10%HP+6%", "敏捷提升10%HP提升6%", tAll),
                [ rHalf, rVoid, rHalf, rAbsord, rWeak,
                  rHalf, rHalf, rVoid, rVoid, rEqual,
-                 rEqual, rVoid, rVoid, rEqual, rEqual ] )
+                 rEqual, rVoid, rVoid, rEqual, rEqual ] ),
+  new Monster( 8027, "月神公主", "https://i.imgur.com/7NIgjgg.jpg",
+               "受到滿月之力影響而甦醒的神族。喜好出沒於迷宮之中並幫助冒險的勇者，其美貌據說常使得男性勇者們念念不忘。",
+               8029, null, [],
+               rSS, sX, tUniversal, 27,
+               new State(23, 22, 15, 21, 14, 23),
+               new State(667, 384, 286, 423, 309, 345),
+               [ new Skill("命運之輪", "提升己方全體的敏捷和各種能力，並在2回合內持續恢復", 20, 89, sPhysicalUp),
+                 new Skill("花月弄舞", "隨機攻擊，一定概率封印對手的體技", 40, 41, sDanceDown) ],
+               [ new Characteristic("化羽之衣", "在偶數輪最開始發動，提升能力，同時減輕咒文傷害"),
+                 new Characteristic("浮生繪影", "行動後，MP稍微恢復"),
+                 new Characteristic("天象從臨", "反彈己方單個成員所受的氣息攻擊") ],
+               new Leader("MP消耗減輕30%", "MP消耗減輕30%", tAll),
+               [ rEqual, rHalf, rWeak, rHalf, rEqual,
+                 rAbsord, rAbsord, rVoid, rEqual, rEqual,
+                 rEqual, rVoid, rHalf, rEqual, rEqual ] ),
+  new Monster( 8028, "魔萌兔大王", "https://i.imgur.com/3oiYMSS.jpg",
+               "頭上戴有小帽的魔萌兔大王。個性溫馴卻常常張開口就嚇到人，由於心裡很在意，所以愈吃越胖就成為了同伴中的首領。",
+               8030, null, [],
+               rSS, sDevil, tMagic, 27,
+               new State(21, 19, 22, 18, 24, 18),
+               new State(616, 323, 316, 336, 343, 435),
+               [ new Skill("夜月風暴", "對全體敵人隨機造成迪恩屬性傷害", 20, 38, sMagicAttack),
+                 new Skill("圓月之力", "蓄魔力1回合，使咒文傷害變成3被，並一回合內反彈敵人的體技", 40, 40, sPhysicalUp) ],
+               [ cAI2,
+                 new Characteristic("月兔的茶會", "行動後，MP稍微恢復"),
+                 new Characteristic("萌兔秘術", "在戰鬥最開始發動，自己的能力提升") ],
+               new Leader("MP+10%智力+10%", "MP提升10%智力提升10%", tAll),
+               [ rEqual, rVoid, rEqual, rVoid, rHalf,
+                 rVoid, rVoid, rVoid, rEqual, rEqual,
+                 rWeak, rEqual, rEqual, rEqual, rEqual ] ),
+  new Monster( 8029, "月夜公主", "https://i.imgur.com/cGCQeNW.jpg",
+               "身穿霓虹羽衣的公主。每當滿月之時，將會悄悄地現身，將月光的祝福施予尊敬她的子民。",
+               null, 8027, [king_egg, rainbow_egg, general_egg, emperor_egg, emperor_egg],
+               rS, sX, tUniversal, 18,
+               new State(21, 20, 14, 20, 12, 20),
+               new State(580, 335, 245, 380, 287, 315),
+               [ new Skill("月夜審判", "全體攻擊後，一定概率下降低智力和咒文防禦力", 20, 48, sPhysicalDown),
+                 new Skill("竹夢水月", "將自己的大量MP傳給己方一個成員", 40, 90, sMagicRecover) ],
+               [ new Characteristic("化羽之衣", "在偶數輪最開始發動，提升能力，同時減輕咒文傷害"),
+                 new Characteristic("浮生繪影", "行動後，MP稍微恢復") ],
+               new Leader("MP消耗減輕10%", "MP消耗減輕10%", tAll),
+               [ rEqual, rHalf, rWeak, rHalf, rEqual,
+                 rVoid, rVoid, rVoid, rEqual, rEqual,
+                 rEqual, rVoid, rHalf, rEqual, rEqual ] ),
+  new Monster( 8030, "魔萌兔", "https://i.imgur.com/XSBaFjL.jpg",
+               "喜愛在夜晚與冒險者玩耍的胖惡魔。雖然是魔萌，但是長時間受到月光影響，長出了像兔子一樣的耳朵，經常讓人誤會是隻胖兔子。",
+               null, 8028, [king_egg, rainbow_egg, general_egg, general_egg, emperor_egg],
+               rS, sDevil, tMagic, 18,
+               new State(19, 17, 21, 17, 23, 16),
+               new State(578, 283, 286, 296, 303, 396),
+               [ new Skill("星辰風暴", "對全體敵人隨機造成巴基屬性傷害", 20, 38, sMagicAttack),
+                 new Skill("萌兔連擊", "隨機對全體敵人進行連續攻擊，並降低其智力", 40, 38, sPhysicalDown) ],
+               [ cAI2,
+                 new Characteristic("月兔的茶會", "行動後，MP稍微恢復") ],
+               new Leader("MP+8%智力+8%", "MP提升8%智力提升8%", tAll),
+               [ rEqual, rVoid, rEqual, rVoid, rHalf,
+                 rHalf, rHalf, rVoid, rEqual, rEqual,
+                 rWeak, rEqual, rEqual, rEqual, rEqual ] ),
+  new Monster( 8031, "霍米肉", "https://i.imgur.com/ymQcTgC.jpg",
+               "在中秋節才會現身的一種特殊霍伊米史萊姆。雖然有說法表示吃燒肉對身體好，但誤食了烤焦的肉，反而會流眼淚。",
+               null, null, [],
+               rS, sSlime, tAttack, 14,
+               new State(19, 15, 16, 21, 17, 15),
+               new State(591, 275, 438, 329, 307, 200),
+               [ new Skill("燒肉擊", "對一個敵人造成大量傷害，並解除續力狀態", 20, 38, sSlashSpecial),
+                 new Skill("烤肉之舞", "對全體敵人造成傷害並使其混亂", 30, 33, sDanceDown),
+                 new Skill("肉串射擊", "隨機攻擊，一定概率下使對方麻痺", 40, 35, sPhysicalDown) ],
+               [ cAI2,
+                 cOAttackUp,
+                 cRecoverHP ],
+               new Leader("HP和攻擊力+10%", "HP和攻擊力上升10%", tSlime),
+               [ rHalf, rEqual, rEqual, rHalf, rWeak,
+                 rHalf, rHalf, rVoid, rEqual, rVoid,
+                 rEqual, rWeak, rHalf, rHalf, rEqual ] ),
+  new Monster( 8032, "賞月三兄弟", "https://i.imgur.com/Oa36vGH.jpg",
+               "每當中秋來臨就會出現的三兄弟。多虧有長男在最下方背著弟弟們才能賞月，據說身上常帶著大量的中秋禮金。",
+               null, null, [],
+               rA, sSlime, tAuxiliary, 8,
+               new State(20, 25, 15, 19, 18, 23),
+               new State(386, 200, 245, 382, 351, 205),
+               [ new Skill("月見步伐", "使自身的迴避率提升到一定值", 20, 8, sPhysicalUp),
+                 new Skill("月見糰子", "解除己方全體除弱體以外的異常狀態", 30, 56, sPhysicalRecover) ],
+               [ cIncreaseGold ],
+               new Leader("金幣+8%", "獲得金幣增加8%", tAll),
+               [ rHalf, rEqual, rEqual, rEqual, rHalf,
+                 rHalf, rWeak, rEqual, rEqual, rHalf,
+                 rEqual, rHalf, rEqual, rHalf, rEqual ] )
 ];
 /*
 [ 美拉, 夏德, 基拉, 巴基, 伊奧,
