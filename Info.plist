@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Ming-Hsien Tsai</string>
 	<key>Builder Version</key>
-	<string>12604.1.38.1.6</string>
+	<string>12604.3.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>DQMSL Search Translation</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2017.10.13.1</string>
+	<string>2017.10.27.0</string>
 	<key>CFBundleVersion</key>
-	<string>2017.10.13.1</string>
+	<string>2017.10.27.0</string>
 	<key>Chrome</key>
 	<dict/>
 	<key>Content</key>
