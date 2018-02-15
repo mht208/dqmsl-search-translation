@@ -695,7 +695,7 @@ var monsters = {
     580: {jn: "ぬかどこスライム", cn: "米糠醬史萊姆"},
     581: {jn: "じめじめバブル", cn: "潮濕泡沫"},
     582: {jn: "死神スライダーク", cn: "死神黑暗史萊"},
-    //583: {jn: "", cn: ""},
+    583: {jn: "３周年お祝いホイミン", cn: "3周年節日霍伊米恩"},
     584: {jn: "メタルセラフィム", cn: "金屬天使史萊姆"},
     585: {jn: "メタルゴッデス", cn: "金屬女神史萊姆"},
     //586: {jn: "", cn: ""},
@@ -1876,7 +1876,7 @@ var skills = {
     9003: {jn: "ホイミン音頭", cn: "霍伊米恩舞曲", detail: ""},
     9008: {jn: "フワフワダンス", cn: "軟綿綿之舞", detail: "跳起可愛的舞蹈恢復己方全體的HP"},
     18001: {jn: "ハッスルダンス", cn: "振奮之舞", detail: "隨機恢復己方的HP"},
-    18002: {jn: "よろこびのまい", cn: "", detail: ""},
+    18002: {jn: "よろこびのまい", cn: "喜悅之舞", detail: "隨機恢復己方成員的HP"},
     18003: {jn: "ケアルワルツ", cn: "", detail: ""},
 
     /* 舞蹈攻擊 */
@@ -1924,7 +1924,7 @@ var characteristics = {
     "まれに天地のかまえ": "偶而天地之勢",
     "まれにリザオラル": "罕發裡扎奧拉爾",
     "つねにマインドバリア": "常時精神屏障（行動不會被停止）",
-    "つねにマホカンタ": "常時瑪霍卡恩塔",
+    "つねにマホカンタ": "常時瑪霍卡恩塔（對己方1個成員展開可以反彈咒文的屏障）",
     "つねにみかわしきゃく": "常時閃避步法",
     "つねにおいかぜ": "常時逆轉之風（反彈己方單個成員所受的氣息攻擊）",
 
@@ -1947,7 +1947,7 @@ var characteristics = {
     "ひん死でちからため": "瀕死時蓄力（再回合一開始，且剩餘HP在1/4以下時，攻擊力變更為2倍）",
 
     "ゴールド増": "金幣上升",
-    "みかわしアップ": "閃避上升",
+    "みかわしアップ": "閃避上升（閃避率提升）",
     "メタルボディ": "金屬身體（遭受攻擊時只會受到3分之1的傷害，特技消耗MP提升2倍）",
     "ライトメタルボディ": "輕金屬身體（遭受攻擊時只會受到4分之3的傷害，特技消耗MP提升1.2倍）",
     "ハードメタルボディ": "重金屬身體（遭受攻擊時只會受到1/4的傷害，特技消耗MP提升2.5倍）",
@@ -1966,7 +1966,7 @@ var characteristics = {
     "魔神の闘気": "魔神的鬥氣",
     "邪神の怒り": "邪神之怒",
     "悪しきオーラ": "邪惡之氣",
-    "神を超えしチカラ": "超越神的力量",
+    "神を超えしチカラ": "超越神的力量（戰鬥的最開始發動，3回合間防禦異常狀態）",
     "ドラゴンビート": "龍之躍動",
     "進化の秘法": "進化的秘術",
     "暗黒の闘気": "暗黑的鬥氣",
@@ -2329,7 +2329,9 @@ var cAI12 = new Characteristic("AI行動1-2次", "1回合中1~2回連續行動�
 var cAI2 = new Characteristic("AI行動2次", "1回合中2回連續行動，第2次以後的行動，會使用普通攻擊");
 var cAI23 = new Characteristic("AI行動2-3次", "1回合中2~3回連續行動 第2次以後的行動，會使用普通攻擊");
 var cDodge = new Characteristic("閃避提升", "閃避率提升");
+var cIDodge = new Characteristic("突發閃避步法", "在戰鬥最開始發動，回避率提升");
 var cODefUp = new Characteristic("偶發斯卡拉", "在一輪最開始偶爾發動，防禦力提升");
+var cAIntUp = new Characteristic("常時伊恩特", "常時智力提升");
 var cOMagicDefense = new Characteristic("偶發瑪霍卡恩塔", "在一輪最開始偶爾發動，咒文反彈");
 var cOAttackUp = new Characteristic("偶發巴依奇爾托", "在一輪最開始偶爾發動，攻擊力提升");
 var cRecoverMP = new Characteristic("自動恢復MP", "行動後，MP稍微恢復");
@@ -2841,7 +2843,35 @@ var mdata = [
                new Leader("金幣+8%", "獲得金幣增加8%", tAll),
                [ rHalf, rEqual, rEqual, rEqual, rHalf,
                  rHalf, rWeak, rEqual, rEqual, rHalf,
-                 rEqual, rHalf, rEqual, rHalf, rEqual ] )
+                 rEqual, rHalf, rEqual, rHalf, rEqual ] ),
+  new Monster( 8033, "貔貅", "https://i.imgur.com/0aEWn69.jpg",
+               "於春節期間現身的祥瑞之獸貔貅，擁有逢凶化吉、鎮宅財旺的能力。據說有貔貅的地方就是財寶聚集之地。",
+               null, null, [],
+               rS, sBeast, tAttack, 14,
+               new State(18, 19, 23, 22, 20, 16),
+               new State(477, 277, 367, 357, 337, 203),
+               [ new Skill("鎮宅亂擊", "隨機對全體敵人造成連續攻擊並讓其防禦能力下降", 32, 17, sSlashDown),
+                 new Skill("吸納之擊", "對1個敵人造成傷害，並吸收相當於傷害值一半的MP", 10, 34, sSlashDown),
+                 new Skill("避邪之力", "對全體敵人造成基拉系特大傷害，以一定概率使其麻痺", 82, 58, sPhysicalDown) ],
+               [ cAI2, cIncreaseGold, cDodge ],
+               new Leader("會心率+5%", "會心率上升5%", tAll),
+               [ rHalf, rWeak, rHalf, rHalf, rEqual,
+                 rHalf, rVoid, rVoid, rEqual, rEqual,
+                 rHalf, rWeak, rHalf, rHalf, rEqual ] ),
+  new Monster( 8034, "旺福", "https://i.imgur.com/S21U32V.jpg",
+               "年僅三歲的靈犬，時常為身邊的人帶來好運，行動敏捷的祂在戰鬥時就像一道紅色閃光穿梭在敵群之中，而激動時祂身上的金色花紋還會顯得特別的鮮豔。",
+               null, null, [],
+               rS, sBeast, tUniversal, 14,
+               new State(18, 22, 14, 20, 21, 23),
+               new State(487, 327, 163, 327, 347, 367),
+               [ new Skill("三載旺瑞", "恢復己方一體的HP，並在2回合內持續恢復", 33, 16, sPhysicalRecover),
+                 new Skill("黃金祝福", "對全體敵人造成迪恩系傷害", 41, 28, sPhysicalAttack),
+                 new Skill("靈犬吼叫", "對一個敵人造成特大的咒文傷害", 35, 66, sMagicAttack) ],
+               [ cIDodge, cAIntUp, cRecoverMP ],
+               new Leader("HP和MP+10%", "HP和MP提升10%", tAll),
+               [ rHalf, rHalf, rEqual, rHalf, rWeak,
+                 rHalf, rVoid, rVoid, rEqual, rEqual,
+                 rHalf, rWeak, rHalf, rHalf, rEqual ] )
 ];
 /*
 [ 美拉, 夏德, 基拉, 巴基, 伊奧,
