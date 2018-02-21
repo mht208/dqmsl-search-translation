@@ -2850,9 +2850,9 @@ var mdata = [
                rS, sBeast, tAttack, 14,
                new State(18, 19, 23, 22, 20, 16),
                new State(477, 277, 367, 357, 337, 203),
-               [ new Skill("鎮宅亂擊", "隨機對全體敵人造成連續攻擊並讓其防禦能力下降", 32, 17, sSlashDown),
-                 new Skill("吸納之擊", "對1個敵人造成傷害，並吸收相當於傷害值一半的MP", 10, 34, sSlashDown),
-                 new Skill("避邪之力", "對全體敵人造成基拉系特大傷害，以一定概率使其麻痺", 82, 58, sPhysicalDown) ],
+               [ new Skill("鎮宅亂擊", "隨機對全體敵人造成連續攻擊並讓其防禦能力下降", 17, 32, sSlashDown),
+                 new Skill("吸納之擊", "對1個敵人造成傷害，並吸收相當於傷害值一半的MP", 34, 10, sSlashDown),
+                 new Skill("避邪之力", "對全體敵人造成基拉系特大傷害，以一定概率使其麻痺", 58, 82, sPhysicalDown) ],
                [ cAI2, cIncreaseGold, cDodge ],
                new Leader("會心率+5%", "會心率上升5%", tAll),
                [ rHalf, rWeak, rHalf, rHalf, rEqual,
@@ -2864,9 +2864,9 @@ var mdata = [
                rS, sBeast, tUniversal, 14,
                new State(18, 22, 14, 20, 21, 23),
                new State(487, 327, 163, 327, 347, 367),
-               [ new Skill("三載旺瑞", "恢復己方一體的HP，並在2回合內持續恢復", 33, 16, sPhysicalRecover),
-                 new Skill("黃金祝福", "對全體敵人造成迪恩系傷害", 41, 28, sPhysicalAttack),
-                 new Skill("靈犬吼叫", "對一個敵人造成特大的咒文傷害", 35, 66, sMagicAttack) ],
+               [ new Skill("三載旺瑞", "恢復己方一體的HP，並在2回合內持續恢復", 16, 33, sPhysicalRecover),
+                 new Skill("黃金祝福", "對全體敵人造成迪恩系傷害", 28, 42, sPhysicalAttack),
+                 new Skill("靈犬吼叫", "對一個敵人造成特大的咒文傷害", 66, 35, sMagicAttack) ],
                [ cIDodge, cAIntUp, cRecoverMP ],
                new Leader("HP和MP+10%", "HP和MP提升10%", tAll),
                [ rHalf, rHalf, rEqual, rHalf, rWeak,
@@ -2874,6 +2874,7 @@ var mdata = [
                  rHalf, rWeak, rHalf, rHalf, rEqual ] )
 ];
 /*
+new Skill(name, description, lv, mp, type)
 [ 美拉, 夏德, 基拉, 巴基, 伊奧,
   迪恩, 德爾瑪, 扎奇, 瑪霍托恩, 馬努撒,
   毒, 睡眠, 混亂, 痲痹, 氣息封印 ]
