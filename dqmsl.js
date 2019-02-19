@@ -710,7 +710,7 @@ var monsters = {
     595: {jn: "メタルスター", cn: "金屬星球"},
     //596: {jn: "", cn: ""},
     597: {jn: "ビルダースライム", cn: "建造史萊姆"},
-    //598: {jn: "", cn: ""},
+    598: {jn: "空の神ホアカリ", cn: "空神霍亞卡里"},
     //599: {jn: "", cn: ""},
     //600: {jn: "", cn: ""},
     601: {jn: "メラリザード", cn: "美拉蜥蜴"},
@@ -1177,6 +1177,9 @@ var monsters = {
    1082: {jn: "鉄鬼軍王キラゴルド", cn: "鐵鬼軍王齊拉格德"},
    1083: {jn: "ホメロス", cn: "荷梅洛斯"},
    1084: {jn: "魔軍司令ホメロス", cn: "魔軍司令荷梅洛斯"},
+   1085: {jn: "女帝フレイシャ", cn: "女帝芙蕾西雅"},
+   1087: {jn: "邪獣ヒヒュルデ", cn: "邪獸希修魯德"},
+   1088: {jn: "ヒヒュドラード", cn: "希修德萊德"},
    1100: {jn: "銃士キュリトス", cn: "火槍手黃瓜托斯"},
    1101: {jn: "銃士トマトス", cn: "火槍手番茄托斯"},
    1102: {jn: "銃士ナスビス", cn: "火槍手茄子比斯"},
@@ -1209,6 +1212,7 @@ var monsters = {
    1129: {jn: "海冥主メイヴ", cn: "海冥主梅芙"},
    1130: {jn: "フロッグキング", cn: "蛙王"},
    1131: {jn: "ガマデウス", cn: "蟾神"},
+   1132: {jn: "ほうおう", cn: "鳳凰"},
    1134: {jn: "アラクラトロ", cn: "阿剌克拉特羅"},
    1136: {jn: "若葉の精霊", cn: "新葉的精靈"},
    1137: {jn: "暗黒大樹の番人", cn: "黑暗大樹的看守"},
@@ -1287,6 +1291,7 @@ var monsters = {
    1267: {jn: "レッドアサシン", cn: "紅色刺客"},
    1268: {jn: "ブルーアサシン", cn: "藍色刺客"},
    1269: {jn: "アサシンブロス", cn: "刺客二人組"},
+   1270: {jn: "タイプG", cn: "型號G"},
    1272: {jn: "からくりエッグ", cn: "機關蛋"},
    1273: {jn: "パールモービル", cn: "珍珠車"},
    1274: {jn: "グレイトボンバー", cn: "大轟炸機"},
@@ -1399,7 +1404,7 @@ var skills = {
     1052: {jn: "邪悪な魔弾", cn: "邪惡魔彈", detail: "對全體敵人造成隨機3次無屬性咒文傷害"},
     1053: {jn: "", cn: "", detail: ""},
     1054: {jn: "", cn: "", detail: ""},
-    1055: {jn: "", cn: "", detail: ""},
+    1055: {jn: "破壊の魔砲", cn: "破壞的魔砲", detail: "給予全體敵人無屬性的咒文傷害"},
     1056: {jn: "", cn: "", detail: ""},
     1057: {jn: "", cn: "", detail: ""},
     1058: {jn: "", cn: "", detail: ""},
@@ -1421,7 +1426,7 @@ var skills = {
     2012: {jn: "超爆発", cn: "超爆炸", detail: "給予全體敵人無屬性咒文傷害，被命中的敵人高機率當場斃命。使用後將會力盡。"},
     2013: {jn: "光魔の杖", cn: "光魔之杖", detail: "消耗現在的MP的1成，給予1個敵人咒文傷害，有機率降低攻擊力、智力、敏捷"},
     2014: {jn: "", cn: "", detail: ""},
-    2015: {jn: "", cn: "", detail: ""},
+    2015: {jn: "ロストバースト", cn: "失憶爆破", detail: "給予1個敵人無屬性的咒文傷害，被命中的敵人解除蓄力狀態"},
     2016: {jn: "", cn: "", detail: ""},
     2017: {jn: "", cn: "", detail: ""},
     2018: {jn: "", cn: "", detail: ""},
@@ -1534,10 +1539,10 @@ var skills = {
     5030: {jn: "高速爆裂呪文", cn: "高速爆裂咒文", detail: "隨機給予全體敵人5~7次伊奧系的咒文傷害，讓命中的敵人的伊奧耐性以一定機率逐次下降1階"},
     5031: {jn: "呪縛の氷撃", cn: "咒縛冰擊", detail: "給予全體敵方夏德系的咒文傷害，命動的敵人有一定機率會行動停止"},
     5032: {jn: "鮮烈な稲妻", cn: "強烈閃電", detail: "給予全體敵人隨機5次基拉系咒文傷害，被命中的敵人基拉耐性一定機率下降1階"},
-    5033: {jn: "", cn: "", detail: ""},
-    5034: {jn: "", cn: "", detail: ""},
-    5035: {jn: "", cn: "", detail: ""},
-    5036: {jn: "", cn: "", detail: ""},
+    5033: {jn: "過激な火炎", cn: "過激火炎", detail: "給予全體敵人隨機5次美拉系咒文傷害，倍命中的敵人美拉耐性一定機率下降1階"},
+    5034: {jn: "壮絶な閃光", cn: "狀絕閃光", detail: "給予全體敵人隨機5次迪恩系咒文傷害，倍命中的敵人迪恩耐性一定機率下降1階"},
+    5035: {jn: "混沌の爆炎", cn: "混沌爆炎", detail: "給予全體敵人隨機5~7次伊奧系的咒文傷害，被命中的敵人一定機率停止行動"},
+    5036: {jn: "醜悪な暴風", cn: "醜惡風暴", detail: "給予全體敵人巴基系的咒文傷害，被命中的敵人一定機率陷入混亂（無法被反射）"},
     5037: {jn: "", cn: "", detail: ""},
     5038: {jn: "", cn: "", detail: ""},
     5039: {jn: "", cn: "", detail: ""},
@@ -1658,7 +1663,7 @@ var skills = {
     6118: {jn: "生命の剣", cn: "生命之劍", detail: "給予1個敵人無屬性的斬擊傷害。其後，給予全體敵人伊奧系的體技傷害。其後，自己也受到傷害。使用『斬擊預測』及『體技預測』等無法反彈"},
     6119: {jn: "", cn: "", detail: ""},
     6120: {jn: "一刀両断", cn: "一刀兩斷", detail: "給予1個敵人無視閃避的無屬性斬擊傷害"},
-    6121: {jn: "", cn: "", detail: ""},
+    6121: {jn: "流星斬り", cn: "流星斬", detail: "給予全體敵人隨機4次無屬性的斬擊傷害，自己的敏捷越高給予的傷害越大"},
     6122: {jn: "覇王斬", cn: "霸王斬", detail: "給予？？？系的魔物大傷害"},
     6123: {jn: "秘剣ホーリーブレイク", cn: "秘劍神聖打擊", detail: "給予1個敵人迪恩系的斬擊傷害，對？？？系的敵人造成的傷害為3倍"},
     6124: {jn: "", cn: "", detail: ""},
@@ -1789,7 +1794,7 @@ var skills = {
     7118: {jn: "", cn: "", detail: ""},
     7119: {jn: "えんま斬り", cn: "閻魔斬", detail: "給予全體敵人隨機3次無屬性的斬擊傷害，被命中的敵人1回合內『亡者的執念』『亡者的怨恨』等『直到回合最後執行動作前都可殘存』的效果無效化"},
     7120: {jn: "くるい裂き", cn: "瘋狂撕裂", detail: "給予全體敵人隨機4次無屬性的斬擊傷害，一定機率停止行動"},
-    7121: {jn: "", cn: "", detail: ""},
+    7121: {jn: "ダブルアタック", cn: "雙重攻擊", detail: "給予1個敵人2次無屬性的斬擊傷害，倍命中的敵人一定機率停止行動"},
     7122: {jn: "", cn: "", detail: ""},
     7123: {jn: "", cn: "", detail: ""},
     7124: {jn: "おぞましい一閃", cn: "可怖的一閃", detail: "給予全體敵人無屬性的斬擊傷害，被命中的敵人一定機率行動停止與混亂"},
@@ -1930,9 +1935,9 @@ var skills = {
     8105: {jn: "竜魔人の怒り", cn: "龍魔人之怒", detail: "給予全體敵人隨機4次，無屬性的體技傷害，在回合一開始使用"},
     8106: {jn: "じわれ", cn: "地裂", detail: "給予全體敵人無屬性的體技攻擊"},
     8107: {jn: "エクスプロージョン", cn: "炸裂", detail: "對全體敵人造成伊奧系的特大體技傷害"},
-    8108: {jn: "悪夢のこだま", cn: "噩夢的迴響", detail: "給予全體敵方隨機4次，無屬性的體技傷害，自己的智力越高，給予的傷害越大"},
-    8109: {jn: "", cn: "", detail: ""},
-    8110: {jn: "", cn: "", detail: ""},
+    8108: {jn: "悪夢のこだま", cn: "噩夢的迴響", detail: "給予全體敵方隨機4次，無屬性的體技傷害，自己的智力越高給予的傷害越大"},
+    8109: {jn: "アイアンゲイザー", cn: "鋼鐵凝視", detail: "給予1個敵人無屬性的體技傷害，自己的防禦力越高給予的傷害越大"},
+    8110: {jn: "ラピッドショット", cn: "極速射擊", detail: "給予1個敵人無視替身的無屬性體技攻擊，自己的敏捷越高給予的傷害越大"},
     8111: {jn: "", cn: "", detail: ""},
     8112: {jn: "あれくるうこぶし", cn: "肆虐之拳", detail: "給予全體敵人隨機6次無屬性體技傷害，自己的HP越低給予的傷害越大（鬥技時於回合的最後使用）"},
     8113: {jn: "はめつの邪拳", cn: "破滅邪拳", detail: "給予1個敵人無屬性的體技傷害，對處於毒、麻痹、睡眠、混亂、魔素狀態中的敵人傷害2倍"},
@@ -2000,7 +2005,7 @@ var skills = {
     9046: {jn: "きあいのかけ声", cn: "氣力的聲勢", detail: "於回合的最初發動，1回合內我方全體力竭時可以有1次機會以恢復HP20%的狀態復活"},
     9047: {jn: "亡者のよびごえ", cn: "王者的呼喚", detail: "解除我方全體的執念狀態，使我方全體必定以最大HP約50%的狀態復活，於回合最後使用"},
     9048: {jn: "", cn: "", detail: ""},
-    9049: {jn: "", cn: "", detail: ""},
+    9049: {jn: "神鳥のひやく", cn: "神鳥秘藥", detail: "使我方1位成員必定復活至最大HP，倍復活的怪物迴避率1回合內變成70%"},
     9050: {jn: "", cn: "", detail: ""},
     9051: {jn: "", cn: "", detail: ""},
     9052: {jn: "", cn: "", detail: ""},
@@ -2148,8 +2153,8 @@ var skills = {
     10119: {jn: "かえんりゅう", cn: "火炎龍", detail: "給予敵人全體美拉系的體技傷害，以一定機率讓命中的敵人麻痹"},
     10120: {jn: "", cn: "", detail: ""},
     10121: {jn: "亡者連撃", cn: "亡者連擊", detail: "隨機給予全體敵人3次無視閃避的無屬性體技傷害，被命中的敵人一定機率陷入封印恢復狀態"},
-    10122: {jn: "", cn: "", detail: ""},
-    10123: {jn: "", cn: "", detail: ""},
+    10122: {jn: "ぶきみな雷鳴", cn: "詭異雷鳴", detail: "全體敵人的基拉耐性下降1~3階"},
+    10123: {jn: "パイロビーム", cn: "火焰射線", detail: "給予全體敵人伊奧系體技傷害，一定機率附加停止行動"},
     10124: {jn: "", cn: "", detail: ""},
     10125: {jn: "", cn: "", detail: ""},
     10126: {jn: "にらみ", cn: "凝視", detail: "使1個敵人麻痺"},
@@ -2207,7 +2212,7 @@ var skills = {
     11026: {jn: "", cn: "", detail: ""},
     11027: {jn: "ぎらつく眼光", cn: "閃耀眼光", detail: "解除1個敵人的狀態變化，一定機率下降氣息防禦2階"},
     11028: {jn: "キャンセルショット", cn: "取消射擊", detail: "給予全體敵人隨機3次無視閃避的無屬性體技傷害，被命中的敵人解除狀態變化"},
-    11029: {jn: "", cn: "", detail: ""},
+    11029: {jn: "おおぞらのはどう", cn: "天空波動", detail: "解除全體敵人的狀態變化，之後提升我方全體的防禦力1階"},
     11030: {jn: "", cn: "", detail: ""},
     11031: {jn: "ゴールドアストロン", cn: "黃金阿斯特隆", detail: "使1個敵人於2回合內陷入黃金阿斯特隆狀態，並解除原有狀態變化（每場戰鬥只能使用1次）"},
     11032: {jn: "パープルシャドウ", cn: "紫色陰影", detail: "3回合內AI行動次數增加2次，自己受到的傷害減輕約50%，攻擊力與敏捷提升1階"},
@@ -2317,12 +2322,12 @@ var skills = {
     15084: {jn: "", cn: "", detail: ""},
     15085: {jn: "ジャンプ", cn: "跳躍", detail: "直到次回合開始前迴避率變為100%，次回合開始隨機給予1個敵人體技傷害，並一定機率使對方停止行動"},
     15086: {jn: "キラキラポーン", cn: "光閃波動", detail: "解除我方1個成員的異常狀態，之後2~4回合內防止異常狀態"},
-    15087: {jn: "", cn: "", detail: ""},
-    15088: {jn: "", cn: "", detail: ""},
-    15089: {jn: "", cn: "", detail: ""},
+    15087: {jn: "灯火のふえ", cn: "燈火之笛", detail: "我方全體的敏捷上升2階，1回合內咒文傷害提升為1.3倍"},
+    15088: {jn: "ダークアーマー", cn: "黑暗鎧甲", detail: "提升我方全體的智力、防禦力、咒文防禦、氣息防禦1階"},
+    15089: {jn: "メダパニバリア", cn: "美達帕尼屏障", detail: "3回合內我方全體防止混亂與停止行動狀態，於回合最初使用"},
     15090: {jn: "", cn: "", detail: ""},
     15091: {jn: "", cn: "", detail: ""},
-    15092: {jn: "", cn: "", detail: ""},
+    15092: {jn: "ごう慢な構え", cn: "傲慢之勢", detail: "次回合咒文傷害2倍，1回合內反射斬擊特技與通常攻擊，敏捷與智力提升1階，於回合最初使用"},
     15093: {jn: "", cn: "", detail: ""},
     15094: {jn: "", cn: "", detail: ""},
     15095: {jn: "", cn: "", detail: ""},
@@ -2713,7 +2718,7 @@ var characteristics = {
     "光のはごろも": "光之羽衣（在戰鬥最開始發動，3回合內防禦異常狀態）",
     "闇のチカラ": "黑暗力量",
     "星のいかり": "星星之光（在戰鬥最開始發動，自己的能力提升）",
-    "聖なる輝き": "神聖光輝",
+    "聖なる輝き": "神聖光輝（在戰鬥最開始發動，3回合內防禦異常狀態）",
     "スライダーボディ": "黑暗金屬軀體（在偶數輪最開始發動，攻擊力和敏捷提升）",
     "悪魔王の威光": "惡魔王的威光",
     "マヒ･マ素に強攻撃": "對麻痺、魔素強攻擊",
@@ -2840,7 +2845,14 @@ var characteristics = {
     "集中": "集中（於偶數回合的最初發動，恢復自己的MP，提升攻擊力1階）",
     "魔竜のたましい": "魔龍之魂（於戰鬥最初發動，3回合內自己攻擊時對手的德爾瑪耐性下降1階）",
     "ヒートアップ": "沸騰（於戰鬥最初發動，攻擊力與敏捷上升1階）",
-    "魔砲のオーラ": "魔炮之氣（於戰鬥最初發動，攻擊力上升2階，3回合內防止異常狀態）"
+    "魔砲のオーラ": "魔炮之氣（於戰鬥最初發動，攻擊力上升2階，3回合內防止異常狀態）",
+    "自然治癒": "自然治癒（每回合開始，解除弱體狀態）",
+    "魔力の供給": "魔力供給（於偶數回合的最初發動，使我方全體惡魔系附加1回合內行動後恢復MP狀態）",
+    "最後のれんげき": "最後的連擊（力竭時發動，對打倒自己的怪物進行2次通常攻擊）",
+    "奇怪なオーラ": "奇怪的氣息（3回合內防止停止行動或封印系狀態，反射體技特技，無法被「凍結波動」等特技解除，可被「神之波動」等解除）",
+    "雷の使い手": "雷電師（自己攻擊時對手的基拉耐性下降1階）",
+    "ギアチェンジ": "換檔（與偶數回合的最初發動，提升自己的敏捷50%）",
+    "つばさの加護": "飛翼的加護（每回合的最初發動，提升我方史萊姆系全體的迴避率至70%）"
     //lala
 };
 
@@ -3139,7 +3151,7 @@ var sBreathDown = new SkillType(15, "吐息狀態異常", "tokugiSprite tkg13");
 var sDanceUp = new SkillType(17, "舞蹈輔助", "tokugiSprite tkg18");
 var sDanceDown = new SkillType(18, "舞蹈狀態異常", "tokugiSprite tkg19");
 var sDanceRecover = new SkillType(19, "舞蹈回復", "tokugiSprite tkg20");
-var sDanceSttack = new SkillType(20, "舞蹈攻擊", "tokugiSprite tkg17");
+var sDanceAttack = new SkillType(20, "舞蹈攻擊", "tokugiSprite tkg17");
 
 var Skill = function(name, description, lv, mp, stype) {
   this.name = name;
@@ -3233,7 +3245,7 @@ var plus4_cls = "expImage2 pointer";
 var plus4_scls = "expImage2 pointer expOn";
 
 var twmonsters = {};
-var Monster = function(no, name, image, description, reinsrc, reindst, reineggs, rank, system, type, weight, state, xstate, skills, characteristics, leader, resists) {
+var Monster = function(no, name, image, description, reinsrc, reindst, reineggs, rank, system, type, weight, state, xstate, skills, characteristics, leader, newrein, resists) {
   this.no = no;
   this.name = name;
   this.image = image;
@@ -3250,6 +3262,7 @@ var Monster = function(no, name, image, description, reinsrc, reindst, reineggs,
   this.skills = skills;
   this.characteristics = characteristics;
   this.leader = leader;
+  this.newrein = newrein;
   this.resists = resists;
   this.getMergedState = function(c, p) {
     var base = this.xstate;
@@ -3270,6 +3283,7 @@ var mdata = [
                [ new Skill("濃墨揮毫", "攻擊後一定機率下使對方的命中率下降", 7, 8, sSlashDown) ],
                [ cEasyCriticalHit ],
                new Leader("攻擊力+8%", "攻擊力上升8%", tSlime),
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rHalf,
                  rHalf, rWeak, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rVoid, rEqual ] ),
@@ -3283,6 +3297,7 @@ var mdata = [
                  new Skill("聚財紅包袋", "奪取1個敵人的MP變成自己的MP", 18, 8, sDanceDown) ],
                [ cIncreaseGold ],
                new Leader("會心率+8%", "會心率上升8%", tAll),
+               [],
                [ rEqual, rEqual, rHalf, rWeak, rEqual,
                  rEqual, rEqual, rEqual, rHalf, rEqual,
                  rVoid, rHalf, rWeak, rEqual, rEqual ] ),
@@ -3297,6 +3312,7 @@ var mdata = [
                [ cRecoverMP,
                  cIncreaseGold ],
                new Leader("最大MP+10%", "最大MP上升10%", tSlime),
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rHalf,
                  rHalf, rWeak, rVoid, rVoid, rEqual,
                  rHalf, rEqual, rEqual, rVoid, rEqual ] ),
@@ -3311,6 +3327,7 @@ var mdata = [
                [ cAI12,
                  cOMagicDefense ],
                new Leader("攻擊防禦+10%", "攻擊力和防禦力上升10%", tBeast),
+               [],
                [ rWeak, rVeryStrong, rStrong, rEqual, rWeak,
                  rStrong, rStrong, rVoid, rEqual, rHalf,
                  rVoid, rEqual, rEqual, rHalf, rEqual ] ),
@@ -3325,6 +3342,14 @@ var mdata = [
                [ cAI2,
                  cOMagicDefense ],
                new Leader("攻擊防禦+15%", "攻擊力和防禦力上升15%", tBeast),
+               [ { name: "新生轉生",
+                   skills: [ new Skill("斷幺九", "隨機選中敵人進行連續攻擊", 0, 35, sDanceAttack),
+                             new Skill("八仙過海", "對全體敵人造成無屬性傷害，並解除其狀態變化", 0, 60, sPhysicalSpecial) ],
+                   characteristics: [ cAI2,
+                                      cOMagicDefense,
+                                      new Characteristic("突發兵刃屏障", "戰鬥最初發動，減輕斬擊傷害"),
+                                      new Characteristic("敏捷+50", "敏捷提升50") ],
+                   leader: new Leader("攻擊防禦+15%", "攻擊力和防禦力上升15%", tBeast) } ],
                [ rWeak, rVoid, rHalf, rEqual, rWeak,
                  rHalf, rHalf, rVoid, rEqual, rHalf,
                  rVoid, rEqual, rEqual, rHalf, rEqual ] ),
@@ -3336,8 +3361,9 @@ var mdata = [
                new State(24, 18, 21, 15, 39, 36),
                [ new Skill("碰槓紅中", "對單個敵人造成美拉系傷害", 1, 17, sSlashAttack),
                  new Skill("海底撈月", "對單個敵人造成巴基系斬擊傷害", 1, 17, sSlashAttack) ],
-               [ ],
+               [],
                lNone,
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3349,8 +3375,9 @@ var mdata = [
                new State(24, 18, 21, 15, 39, 36),
                [ new Skill("加槓白板", "減除單個敵人所中的狀態變化效果", 1, 21, sPhysicalSpecial),
                  new Skill("槓上開花", "對全體敵人造成基拉系傷害", 1, 41, sPhysicalAttack) ],
-               [ ],
+               [],
                lNone,
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3362,8 +3389,9 @@ var mdata = [
                new State(24, 18, 21, 15, 39, 36),
                [ new Skill("暗槓青發", "對一個敵人造成傷害，降低其攻擊力與防禦力", 1, 28, sSlashDown),
                  new Skill("四槓和局", "連續攻擊一個敵人，減弱對手的攻擊咒文耐性", 1, 36, sSlashDown) ],
-               [ ],
+               [],
                lNone,
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3378,6 +3406,7 @@ var mdata = [
                [ cDodge,
                  cODefUp ],
                new Leader("防禦力+8%", "防禦力上升8%", tSlime),
+               [],
                [ rHalf, rEqual, rEqual, rWeak, rWeak,
                  rHalf, rHalf, rEqual, rEqual, rEqual,
                  rWeak, rWeak, rWeak, rEqual, rEqual ] ),
@@ -3394,6 +3423,7 @@ var mdata = [
                  new Characteristic("四神的祝福", "在戰鬥最開始發動，3回合內防禦異常狀態"),
                  new Characteristic("猛虎添翼", "在偶數回合提升攻擊力、防禦力、敏捷及智力") ],
                new Leader("攻擊力+18%", "攻擊力上升18%", tAll),
+               [],
                [ rVoid, rWeak, rHalf, rHalf, rHalf,
                  rAbsord, rEqual, rVoid, rEqual, rVoid,
                  rHalf, rEqual, rVoid, rEqual, rEqual ] ),
@@ -3410,6 +3440,7 @@ var mdata = [
                  new Characteristic("四神的祝福", "在戰鬥最開始發動，3回合內防禦異常狀態"),
                  new Characteristic("聖之盾", "當受到傷害大於目前血量，偶爾會變成1的狀態") ],
                new Leader("氣息效果+20%", "氣息傷害上升20%", tAll),
+               [],
                [ rEqual, rHalf, rEqual, rHalf, rHalf,
                  rWeak, rAbsord, rVoid, rVoid, rVoid,
                  rEqual, rEqual, rVoid, rEqual, rEqual ] ),
@@ -3426,6 +3457,7 @@ var mdata = [
                  new Characteristic("四神的祝福", "在戰鬥最開始發動，3回合內防禦異常狀態"),
                  new Characteristic("青龍的守護", "在一輪最開始偶爾發動 咒文反彈") ],
                new Leader("最大HP+20%", "最大HP上升20%", tAll),
+               [],
                [ rWeak, rAbsord, rHalf, rHalf, rHalf,
                  rEqual, rVoid, rVoid, rEqual, rVoid,
                  rWeak, rEqual, rHalf, rVoid, rEqual ] ),
@@ -3442,6 +3474,7 @@ var mdata = [
                  new Characteristic("四神的祝福", "在戰鬥最開始發動，3回合內防禦異常狀態"),
                  new Characteristic("不滅之炎", "戰鬥的最開始發動，自動復活1次") ],
                new Leader("最大MP+20%", "最大MP上升20%", tAll),
+               [],
                [ rAbsord, rWeak, rEqual, rHalf, rEqual,
                  rAbsord, rHalf, rVoid, rVoid, rVoid,
                  rHalf, rEqual, rVoid, rEqual, rEqual ] ),
@@ -3456,6 +3489,7 @@ var mdata = [
                [ new Characteristic("新春的盛宴", "在一輪最開始發動霍伊米"),
                  cRecoverHP ],
                new Leader("敏捷+10%", "敏捷上升10%", tAll),
+               [],
                [ rAbsord, rWeak, rEqual, rHalf, rEqual,
                  rHalf, rEqual, rVoid, rEqual, rEqual,
                  rHalf, rEqual, rHalf, rVoid, rEqual ] ),
@@ -3470,6 +3504,7 @@ var mdata = [
                [ cAI2,
                  cRecoverMP ],
                new Leader("最大MP+8%", "最大MP上升8%", tAll),
+               [],
                [ rWeak, rAbsord, rHalf, rEqual, rWeak,
                  rHalf, rEqual, rVoid, rEqual, rEqual,
                  rEqual, rEqual, rHalf, rVoid, rEqual ] ),
@@ -3485,6 +3520,14 @@ var mdata = [
                  cRecoverMP,
                  new Characteristic("年獸的守護", "戰鬥的最開始發動 防禦力提升") ],
                new Leader("最大MP+10%", "最大MP上升10%", tAll),
+               [ { name: "新生轉生",
+                   skills: [ new Skill("五暗刻", "恢復我方全體HP", 0, 120, sDanceRecover),
+                             new Skill("四風連和", "復活我方1位成員，一定機率提升攻擊力和防禦力", 0, 110, sPhysicalRecover) ],
+                   characteristics: [ cAI2,
+                                      cRecoverMP,
+                                      new Characteristic("年獸的庇佑", "戰鬥最初發動，防禦力上升並減輕咒文傷害"),
+                                      new Characteristic("恢復的訣竅", "恢復系特技 消耗MP減半 效果稍微提升") ],
+                   leader: new Leader("最大MP+10%", "最大MP上升10%", tAll) } ],
                [ rWeak, rAbsord, rHalf, rEqual, rWeak,
                  rHalf, rEqual, rVoid, rEqual, rHalf,
                  rEqual, rVoid, rHalf, rEqual, rEqual ] ),
@@ -3496,7 +3539,8 @@ var mdata = [
                new State(303, 101, 334, 231, 165, 237),
                [ new Skill("富貴滿堂", "使全體敵人混亂", 19, 16, sDanceDown) ],
                [ cDodge ],
-               null,
+               lNone,
+               [],
                [ rEqual, rEqual, rEqual, rWeak, rVoid,
                  rEqual, rVoid, rEqual, rEqual, rEqual,
                  rWeak, rEqual, rVoid, rHalf, rEqual ] ),
@@ -3512,6 +3556,7 @@ var mdata = [
                  cRecoverMP2,
                  cIncreaseGold ],
                new Leader("防禦提升20%和MP提升+10%", "魔獸系防禦提升20%和MP提升10%", tBeast),
+               [],
                [ rAbsord, rEqual, rEqual, rWeak, rVoid,
                  rEqual, rHalf, rVoid, rHalf, rEqual,
                  rEqual, rHalf, rHalf, rVoid, rEqual ] ),
@@ -3524,8 +3569,9 @@ var mdata = [
                [ new Skill("大車輪役滿", "提升己方全體的防禦力", 1, 24, sMagicUp),
                  new Skill("東風春梅", "復活己方一個成員並恢復其一半的HP", 1, 60, sMagicRecover),
                  new Skill("流局滿貫", "減輕己方全體受到的咒文傷害", 1, 16, sMagicUp) ],
-               [ ],
+               [],
                lNone,
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3537,8 +3583,9 @@ var mdata = [
                new State(19, 14, 16, 12, 31, 28),
                [ new Skill("國士無雙", "雖然很容易出現會心一擊，但失誤率也很高", 1, 24, sSlashAttack),
                  new Skill("南風夏蘭", "隨機選中敵人進行連續攻擊", 1, 24, sPhysicalAttack) ],
-               [ ],
+               [],
                lNone,
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3550,8 +3597,9 @@ var mdata = [
                new State(19, 14, 16, 12, 31, 28),
                [ new Skill("門清自摸", "使全體敵人混亂", 1, 16, sDanceDown),
                  new Skill("西風秋菊", "解除己方全體除弱體以外的異常狀態", 1, 56, sPhysicalRecover) ],
-               [ ],
+               [],
                lNone,
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3563,8 +3611,9 @@ var mdata = [
                new State(19, 14, 16, 12, 31, 28),
                [ new Skill("北風冬竹", "奪取1個敵人的MP變成自己的MP", 1, 8, sMagicDown),
                  new Skill("九蓮寶燈", "大幅恢復己方全體的HP", 1, 65, sMagicRecover)  ],
-               [ ],
+               [],
                lNone,
+               [],
                [ rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual,
                  rEqual, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3582,6 +3631,7 @@ var mdata = [
                  new Characteristic("九尾的秘術", "在偶數回合提升攻擊力、防禦力、敏捷及智力"),
                  new Characteristic("增加經驗值", "完成關卡時，獲得經驗值增加1.1倍，同樣效果不能重複") ],
                new Leader("敏捷+10%HP+6%", "敏捷提升10%HP提升6%", tAll),
+               [],
                [ rHalf, rVoid, rHalf, rAbsord, rWeak,
                  rHalf, rHalf, rVoid, rVoid, rEqual,
                  rEqual, rVoid, rVoid, rEqual, rEqual ] ),
@@ -3597,6 +3647,7 @@ var mdata = [
                  new Skill("冰冰的祝福", "對全體敵人造成特大的夏德系氣息傷害，一定機率使對方無法行動", 45, 62, sBreathDown), ],
                [ cAI2, cIDodge, cRecoverMP ],
                new Leader("HP和MP+10%", "HP和MP提升10%", tAll),
+               [],
                [ rHalf, rVoid, rEqual, rEqual, rEqual,
                  rVoid, rWeak, rVoid, rVoid, rEqual,
                  rWeak, rHalf, rEqual, rHalf, rEqual ] ),
@@ -3612,6 +3663,7 @@ var mdata = [
                  new Characteristic("浮生繪影", "行動後，MP稍微恢復"),
                  new Characteristic("天象從臨", "反彈己方單個成員所受的氣息攻擊") ],
                new Leader("MP消耗減輕30%", "MP消耗減輕30%", tAll),
+               [],
                [ rEqual, rHalf, rWeak, rHalf, rEqual,
                  rAbsord, rAbsord, rVoid, rEqual, rEqual,
                  rEqual, rVoid, rHalf, rEqual, rEqual ] ),
@@ -3627,6 +3679,7 @@ var mdata = [
                  new Characteristic("月兔的茶會", "行動後，MP稍微恢復"),
                  new Characteristic("萌兔秘術", "在戰鬥最開始發動，自己的能力提升") ],
                new Leader("MP+10%智力+10%", "MP提升10%智力提升10%", tAll),
+               [],
                [ rEqual, rVoid, rEqual, rVoid, rHalf,
                  rVoid, rVoid, rVoid, rEqual, rEqual,
                  rWeak, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3641,6 +3694,7 @@ var mdata = [
                [ new Characteristic("化羽之衣", "在偶數輪最開始發動，提升能力，同時減輕咒文傷害"),
                  new Characteristic("浮生繪影", "行動後，MP稍微恢復") ],
                new Leader("MP消耗減輕10%", "MP消耗減輕10%", tAll),
+               [],
                [ rEqual, rHalf, rWeak, rHalf, rEqual,
                  rVoid, rVoid, rVoid, rEqual, rEqual,
                  rEqual, rVoid, rHalf, rEqual, rEqual ] ),
@@ -3655,6 +3709,7 @@ var mdata = [
                [ cAI2,
                  new Characteristic("月兔的茶會", "行動後，MP稍微恢復") ],
                new Leader("MP+8%智力+8%", "MP提升8%智力提升8%", tAll),
+               [],
                [ rEqual, rVoid, rEqual, rVoid, rHalf,
                  rHalf, rHalf, rVoid, rEqual, rEqual,
                  rWeak, rEqual, rEqual, rEqual, rEqual ] ),
@@ -3671,6 +3726,7 @@ var mdata = [
                  cOAttackUp,
                  cRecoverHP ],
                new Leader("HP和攻擊力+10%", "HP和攻擊力上升10%", tSlime),
+               [],
                [ rHalf, rEqual, rEqual, rHalf, rWeak,
                  rHalf, rHalf, rVoid, rEqual, rVoid,
                  rEqual, rWeak, rHalf, rHalf, rEqual ] ),
@@ -3684,6 +3740,7 @@ var mdata = [
                  new Skill("月見糰子", "解除己方全體除弱體以外的異常狀態", 30, 56, sPhysicalRecover) ],
                [ cIncreaseGold ],
                new Leader("金幣+8%", "獲得金幣增加8%", tAll),
+               [],
                [ rHalf, rEqual, rEqual, rEqual, rHalf,
                  rHalf, rWeak, rEqual, rEqual, rHalf,
                  rEqual, rHalf, rEqual, rHalf, rEqual ] ),
@@ -3698,6 +3755,7 @@ var mdata = [
                  new Skill("避邪之力", "對全體敵人造成基拉系特大傷害，以一定概率使其麻痺", 58, 82, sPhysicalDown) ],
                [ cAI2, cIncreaseGold, cDodge ],
                new Leader("會心率+5%", "會心率上升5%", tAll),
+               [],
                [ rHalf, rWeak, rHalf, rHalf, rEqual,
                  rHalf, rVoid, rVoid, rEqual, rEqual,
                  rHalf, rWeak, rHalf, rHalf, rEqual ] ),
@@ -3712,6 +3770,7 @@ var mdata = [
                  new Skill("靈犬吼叫", "對一個敵人造成特大的咒文傷害", 66, 35, sMagicAttack) ],
                [ cIDodge, cAIntUp, cRecoverMP ],
                new Leader("HP和MP+10%", "HP和MP提升10%", tAll),
+               [],
                [ rHalf, rHalf, rEqual, rHalf, rWeak,
                  rHalf, rVoid, rVoid, rEqual, rEqual,
                  rHalf, rWeak, rHalf, rHalf, rEqual ] )
@@ -3789,6 +3848,32 @@ function displayOnDqmslSearch(id) {
   }
   skills_block = skills_block.join("<div></div>");
 
+  newskills_block = [];
+  for (var newrein of m.newrein) {
+    var newrein_block = [];
+    for (var i in newrein.skills) {
+      var skill = newrein.skills[i];
+      newrein_block.push(`
+        <span class="enclose3">
+          <span class="listHead2">${fnum[parseInt(i) + 1]}：</span>
+          <span class="${skill.stype.cls}"></span>
+          ${skill.name}  MP: ${skill.mp}
+          <br/>
+          (${skill.description})
+        </span>
+      `);
+    }
+    newrein_block = newrein_block.join("<div></div>")
+    newrein_block = "<span class=\"detmhead\">" + newrein.name + "</span><div>" + newrein_block + "</div>"
+    newskills_block.push(newrein_block);
+  }
+  newskills_block = newskills_block.join("");
+  if (newskills_block != "") {
+    newskills_block = "<div style=\"position:relative;border:solid 1px #ccc;padding:10px;margin-top:10px;width: 325px;vertical-align: top;\">"
+                      + newskills_block
+                      + "</div>";
+  }
+
   var characteristics_block = [];
   for (var i in m.characteristics) {
     var c = m.characteristics[i];
@@ -3801,6 +3886,41 @@ function displayOnDqmslSearch(id) {
     `);
   }
   characteristics_block = characteristics_block.join("<div></div>");
+
+  var newcharacteristics_block = [];
+  for (var newrein of m.newrein) {
+    var newrein_block = [];
+    for (var i in newrein.characteristics) {
+      var c = newrein.characteristics[i];
+      newrein_block.push(`
+        <span class='enclose3'>
+          ${fnum[parseInt(i) + 1]}：${c.name}
+          <br/>
+          (${c.description})
+        </span>
+      `);
+    }
+    newrein_block = newrein_block.join("<div></div>")
+    newrein_block = "<span class=\"detmhead\">" + newrein.name + "特性</span><div>" + newrein_block + "</div>"
+    newcharacteristics_block.push(newrein_block);
+  }
+  newcharacteristics_block = newcharacteristics_block.join("");
+  if (newcharacteristics_block != "") {
+    newcharacteristics_block =
+      "<div style=\"position:relative;border:solid 1px #ccc;padding:10px;margin-top:10px;width: 325px;vertical-align: top;\">"
+      + newcharacteristics_block
+      + "</div>";
+  }
+
+  var newleader_block = [];
+  for (var newrein of m.newrein) {
+    var leader = newrein.leader;
+    newleader_block.push(`
+      【${newrein.name}時：<span class="lskill ls${leader.target == null ? "" : leader.target.cls}"></span>
+      ${leader.target == null ? "" : leader.target.name} ${leader.name}】
+    `);
+  }
+  newleader_block = newleader_block.join("");
 
   var reincarnation_block = [];
   if (m.reindst != null || m.reinsrc != null) {
@@ -4043,6 +4163,7 @@ function displayOnDqmslSearch(id) {
         				</div>
         			</div>
               <!-- end of skills -->
+              ${newskills_block}
               <!-- leader characteristic -->
         		  <div style="position:relative;border:solid 1px #ccc;padding:10px;margin-top:10px;width: 325px;vertical-align: top;">
         		    <span class="detmhead">隊長特性</span>
@@ -4052,6 +4173,7 @@ function displayOnDqmslSearch(id) {
         						  <span class="lskill ls${m.leader.target == null ? "" : m.leader.target.cls}"></span>
                     </span>
                     ${m.leader.target == null ? "" : m.leader.target.name} ${m.leader.name}
+                    ${newleader_block}
         					</span>
         				</div>
         			</div>
@@ -4066,6 +4188,7 @@ function displayOnDqmslSearch(id) {
                   ${characteristics_block}
         				</div>
         			</div>
+              ${newcharacteristics_block}
         	  </div>
             <!-- end of characteristics -->
         	</div>
