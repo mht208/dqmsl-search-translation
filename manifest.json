@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "DQMSL Search Translation",
-  "version": "2019.2.19.0",
+  "version": "2019.4.25.0",
   "description": "Translate names in DQMSL Search (http://dqmsl-search.net) to Chinese",
   "author": "Ming-Hsien Tsai",
   "homepage_url": "https://github.com/mht208/dqmsl-search-translation",
@@ -10,7 +10,8 @@
       "matches": [
         "http://dqmsl-search.net/*",
         "http://dqmsl.jpn.org/*",
-        "http://dqmsl.gamedbs.jp/*"
+        "http://dqmsl.gamedbs.jp/*",
+        "https://ドラゴンクエストモンスターズ.gamewith.jp/*"
       ],
       "js": ["jquery-2.2.0.min.js","dqmsl.min.js"]
     }
