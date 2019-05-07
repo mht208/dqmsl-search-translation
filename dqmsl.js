@@ -1,4 +1,5 @@
 
+var version = "";
 var dqmsl_search_url = "dqmsl-search.net";
 
 var options = {
@@ -4470,7 +4471,10 @@ function isSubstring(k, keys) {
 
 /* ==================== Grouping ===================== */
 
-var names = {};
+var names = null;
+var keys = null;
+var groups = null;
+
 var accessors = [
   { source: others,
     jn: function(k) { return k; },
@@ -4491,52 +4495,27 @@ var accessors = [
     jn: function(k) { return k; },
     cn: function(k) { return dqmsl_jpn_org[k]; } }
 ];
-for (var i in accessors) {
-  var accessor = accessors[i];
-  for (var key in accessor.source) {
-    var jn = accessor.jn(key);
-    var cn = accessor.cn(key);
-    if (cn.length > 0)
-      names[RegExp.escape(jn)] = cn;
-  }
-}
-/*
-var keys = Object.keys(names).sort(
-  function(x, y) {
-    if (x.length < y.length) return -1;
-    else if (x.length > y.length) return 1;
-    else return x.localeCompare(y);
-  }
-);
-var groups = [[]];
-var rest = [];
-var cur = 0;
-while(true) {
-    if (keys.length == 0) {
-        if (rest.length == 0)
-            break;
-        else {
-            keys = rest;
-            rest = [];
-            groups.push([]);
-            cur++;
-        }
+
+function calcGrouping() {
+  names = {};
+  for (var i in accessors) {
+    var accessor = accessors[i];
+    for (var key in accessor.source) {
+      var jn = accessor.jn(key);
+      var cn = accessor.cn(key);
+      if (cn.length > 0)
+        names[RegExp.escape(jn)] = cn;
     }
-    var key = keys.pop();
-    if (isSubstring(key, keys))
-        rest.push(key);
-    else
-        groups[cur].push(key);
-}
-*/
-var keys = Object.keys(names).sort(
-  function(x, y) {
-    if (x.length < y.length) return 1;
-    else if (x.length > y.length) return -1;
-    else return x.localeCompare(y);
   }
-);
-var groups = [keys];
+  keys = Object.keys(names).sort(
+    function(x, y) {
+      if (x.length < y.length) return 1;
+      else if (x.length > y.length) return -1;
+      else return x.localeCompare(y);
+    }
+  );
+  groups = [keys];
+}
 
 /* ==================== Substitution ===================== */
 
@@ -4568,26 +4547,26 @@ function replace(str) {
 }
 
 function subst() {
-    var texts = $("body")
-                    .find(":not(iframe)")
-                    .addBack()
-                    .contents()
-                    .filter(function() {
-                        return this.nodeType == 3;
-                    });
-    for (var i in texts) {
-        var text = texts[i];
-        var orig = text.nodeValue;
-        text.nodeValue = replace(text.nodeValue);
-        if (options.append_original && orig != text.nodeValue)
-          text.nodeValue = text.nodeValue + " (" + orig + ")";
-    }
+  var texts = $("body")
+                  .find(":not(iframe)")
+                  .addBack()
+                  .contents()
+                  .filter(function() {
+                      return this.nodeType == 3;
+                  });
+  for (var i in texts) {
+      var text = texts[i];
+      var orig = text.nodeValue;
+      text.nodeValue = replace(text.nodeValue);
+      if (options.append_original && orig != text.nodeValue)
+        text.nodeValue = text.nodeValue + " (" + orig + ")";
+  }
 
-    var imgs = $("body").find("img");
-    insertSkillDetails(imgs);
+  var imgs = $("body").find("img");
+  insertSkillDetails(imgs);
 };
 
-function twversion() {
+function translate() {
   var h = $(location).attr('hostname');
   var p = $(location).attr('pathname');
   var s = $(location).attr('search');
@@ -4637,6 +4616,77 @@ function twversion() {
 
 }
 
+
+
+/* ==================== Main ===================== */
+
+function getVersion(callback) {
+  var called = false;
+  try {
+    if (safari) {
+      called = true;
+      jQuery.get(safari.extension.baseURI + 'Info.plist', function(data) {
+        $('dict > key', data).each(function() {
+          if ($(this).text() == 'CFBundleShortVersionString') {
+              version = $(this).next().text();
+              callback();
+          }
+        });
+      });
+    }
+  } catch(e) {
+  }
+  try {
+    if (chrome) {
+      called = true;
+      var manifestData = chrome.runtime.getManifest();
+      version = manifestData.version;
+      callback();
+    }
+  } catch(e) {
+  }
+  try {
+    if (GM_info) {
+      called = true;
+      version = GM_info.script.version;
+      callback();
+    }
+  } catch (e) {
+  }
+  if (!called) {
+    callback();
+  }
+}
+
+function loadData() {
+  if (localStorage) {
+    if (version != localStorage["version"]) {
+      localStorage.clear();
+    }
+    names = localStorage["names"];
+    keys = localStorage["keys"];
+    groups = localStorage["groups"];
+  }
+  if (names == null || keys == null || groups == null) {
+    calcGrouping();
+    localStorage["version"] = version;
+    localStorage["names"] = JSON.stringify(names);
+    localStorage["keys"] = JSON.stringify(keys);
+    localStorage["groups"] = JSON.stringify(groups);
+  } else {
+    names = JSON.parse(names);
+    keys = JSON.parse(keys);
+    groups = JSON.parse(groups);
+  }
+}
+
+function main() {
+  getVersion(function() {
+    loadData();
+    translate();
+  });
+}
+
 if (window.top == window) {
-  $(twversion);
+  $(main);
 }

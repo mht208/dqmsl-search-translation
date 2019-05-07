@@ -5,8 +5,8 @@
 // @include     http://dqmsl.jpn.org/*
 // @include     http://dqmsl.gamedbs.jp/*
 // @include-jquery true
-// @version     2019.5.2.0
+// @version     2019.5.7.0
 // @grant       none
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js
+// @run-at      document-ready
 // ==/UserScript==
-
