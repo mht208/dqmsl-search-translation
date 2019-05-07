@@ -38,18 +38,13 @@ in Safari.
 - Click "DQMSL Search Translation" in the left panel.
 - Click the "Install" button at the upper-right corner.
 
-### Mozilla Firefox
+### Mozilla Firefox (PC / Android)
 
-- Install the extension Greasemonkey.
-- Drag and drop the file "dqmsl.user.js" to a Firefox window.
-- Click the Install button.
-
-### Mozilla Firefox for Android
-
-- Install the extension USI. (https://addons.mozilla.org/zh-TW/firefox/addon/userunified-script-injector/)
-- In "USI options", click "load Userscript"
-- In the "Direct Userscript Upload" section, click "Browse" and navigate to "dqmsl.user.js"
-- Click "Start" button.
+- Install the extension Tampermonkey.
+- Go to Tampermonkey dashboard.
+- There are two options in this step.
+  - In the Utilities tab, import tampermonkey-import.txt under File.
+  - Click the + icon, paste the content of dqmsl.user.js in the editor, and then save it.
 
 ## Uninstall
 
@@ -67,11 +62,10 @@ userscript.
 - Click "DQMSL Search Translation" in the left panel.
 - Click the "Uninstall" button at the upper-right corner.
 
-### Mozilla Firefox
+### Mozilla Firefox with Tampermonkey
 
-- Visit about:addons.
-- Select the "User Scripts" panel.
-- Click the "Remove" button.
+- Visit Tampermonkey dashboard.
+- Click the trash can icon after DQMSL Search Translation.
 
 ## Update
 
@@ -82,7 +76,7 @@ A same as the folder in Installation.
 ### Google Chrome
 
 - Visit chrome://extensions/.
-- Click "Reload" in the DQMSL Search Translation extension.
+- Click the reload icon in the DQMSL Search Translation extension.
 
 ### Apple Safari
 
@@ -90,7 +84,6 @@ A same as the folder in Installation.
 - Click "DQMSL Search Translation" in the left panel.
 - Click the "Reload" button.
 
-### Mozilla Firefox
+### Mozilla Firefox with Tampermonkey
 
-- Drag and drop the file "dqmsl.user.js" to a Firefox window.
-- Click the Install button.
+- Do the installation instructions again.
