@@ -8,7 +8,11 @@ dqmsl.min.js: dqmsl.js
 dqmsl.user.js: dqmsl.min.js firefox.header
 	cat firefox.header | cat - $< > $@
 
+script.js: dqmsl.js gen_safari_extension_script
+	./gen_safari_extension_script
+
 clean:
-	rm *.bak
+	rm -f *.bak
+	[[ -f script.js ]] && rm script.js
 
 .PHONY: clean all

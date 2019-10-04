@@ -1,0 +1,17 @@
+#!/bin/bash
+
+JQUERY=jquery-2.2.0.min.js
+IN=dqmsl.js
+OUT=script.js
+FOOTER=script.footer.js
+VER=`./get_ver`
+
+lno=`grep -n "function getVersion" ${IN} | cut -f 1 -d :`
+
+cat ${JQUERY} > ${OUT}
+echo "" >> ${OUT}
+sed -n "1,${lno}p" ${IN} >> ${OUT}
+echo "  version = \"${VER}\";" >> ${OUT}
+echo "  callback();" >> ${OUT}
+echo "}" >> ${OUT}
+cat ${FOOTER} >> ${OUT}

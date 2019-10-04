@@ -4811,6 +4811,28 @@ function translate() {
 
 /* ==================== Main ===================== */
 
+function loadData() {
+  if (localStorage) {
+    if (version != localStorage["version"]) {
+      localStorage.clear();
+    }
+    names = localStorage["names"];
+    keys = localStorage["keys"];
+    groups = localStorage["groups"];
+  }
+  if (names == null || keys == null || groups == null) {
+    calcGrouping();
+    localStorage["version"] = version;
+    localStorage["names"] = JSON.stringify(names);
+    localStorage["keys"] = JSON.stringify(keys);
+    localStorage["groups"] = JSON.stringify(groups);
+  } else {
+    names = JSON.parse(names);
+    keys = JSON.parse(keys);
+    groups = JSON.parse(groups);
+  }
+}
+
 function getVersion(callback) {
   var called = false;
   try {
@@ -4846,28 +4868,6 @@ function getVersion(callback) {
   }
   if (!called) {
     callback();
-  }
-}
-
-function loadData() {
-  if (localStorage) {
-    if (version != localStorage["version"]) {
-      localStorage.clear();
-    }
-    names = localStorage["names"];
-    keys = localStorage["keys"];
-    groups = localStorage["groups"];
-  }
-  if (names == null || keys == null || groups == null) {
-    calcGrouping();
-    localStorage["version"] = version;
-    localStorage["names"] = JSON.stringify(names);
-    localStorage["keys"] = JSON.stringify(keys);
-    localStorage["groups"] = JSON.stringify(groups);
-  } else {
-    names = JSON.parse(names);
-    keys = JSON.parse(keys);
-    groups = JSON.parse(groups);
   }
 }
 
