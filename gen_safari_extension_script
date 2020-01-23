@@ -15,3 +15,5 @@ echo "  version = \"${VER}\";" >> ${OUT}
 echo "  callback();" >> ${OUT}
 echo "}" >> ${OUT}
 cat ${FOOTER} >> ${OUT}
+closure-compiler --compilation_level SIMPLE_OPTIMIZATIONS --charset utf-8 \
+	${OUT} > ${OUT/.js/.min.js}
